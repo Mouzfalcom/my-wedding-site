@@ -59,7 +59,7 @@ body {
 .hero-content h1 {
     font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для имен */
     font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
-    background-size: left center;
+    background-size: left ;
     margin: 0; /* Убираем стандартные отступы */
     letter-spacing: 2px; /* Межбуквенный интервал */
 }
@@ -75,7 +75,7 @@ body {
 .hero-content h3{
     font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для имен */
     font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
-    background-size: right center;
+    background-size: right ;
     margin: 0; /* Убираем стандартные отступы */
     letter-spacing: 2px; /* Межбуквенный интервал */
 }
@@ -91,7 +91,7 @@ body {
 /* Стили для секции "Наша История" */
 .our-story-section {
     padding: 60px 0; /* Внутренние отступы сверху и снизу */
-    background-color: #ffffff; /* ИЗМЕНИТЬ: Цвет фона для секции истории (сейчас белый) */
+    /*background-color: #ffffff; /* ИЗМЕНИТЬ: Цвет фона для секции истории (сейчас белый) */
     background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg"); /* ИЗМЕНИТЬ: Фоновое изображение для секции истории */
     background-size: cover; /* Изображение масштабируется так, чтобы покрыть всю секцию */
     background-repeat: no-repeat; /* Запрет повторения фонового изображения */
