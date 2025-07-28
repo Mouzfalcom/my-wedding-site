@@ -1,178 +1,198 @@
-* General Body Styles */
+/* Общие стили для всего тела страницы */
 body {
-    font-family: 'Open Sans', sans-serif; /* CHANGE: Main font for the body text */
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    color: #ffffff; /* CHANGE: Default text color */
-    background-color: #16c7d7; /* CHANGE: Overall background color */
+    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Основной шрифт для текста на странице */
+    line-height: 1.6; /* Межстрочный интервал */
+    margin: 0; /* Отступы от краев страницы */
+    padding: 0; /* Внутренние отступы */
+    color: #ffffff; /* ИЗМЕНИТЬ: Цвет текста по умолчанию (сейчас белый) */
+    background-color: #16c7d7; /* ИЗМЕНИТЬ: Общий цвет фона страницы */
 }
- 
+
+/* Стили для контейнера, ограничивающего ширину контента */
 .container {
-    max-width: 1000px; /* CHANGE: Max width of content */
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 1000px; /* ИЗМЕНИТЬ: Максимальная ширина содержимого */
+    margin: 0 auto; /* Центрирование контейнера по горизонтали */
+    padding: 20px; /* Внутренние отступы контейнера */
 }
- 
-/* Header/Hero Section Styles */
+
+/* Стили для секции заголовка/героя (главного баннера) */
 .hero-section {
-    position: relative;
-    height: 70vh; /* CHANGE: Height of the hero section */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff; /* CHANGE: Text color on hero section */
-    text-align: center;
-    background-image: url("depositphotos_326094218-stock-photo-beautiful-sky-morning.jpg"); /* CHANGE: Background image for the hero section */
-    background-size: cover;
-    background-position: 15% 25%, ;
-    background-repeat: no-repeat;
+    position: relative; /* Относительное позиционирование для правильного наложения фона */
+    height: 70vh; /* ИЗМЕНИТЬ: Высота секции героя (70% от высоты видимой области браузера) */
+    display: flex; /* Использование Flexbox для центрирования содержимого */
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    color: #fff; /* ИЗМЕНИТЬ: Цвет текста в секции героя (сейчас белый) */
+    text-align: center; /* Выравнивание текста по центру */
+    background-image: url("depositphotos_326094218-stock-photo-beautiful-sky-morning.jpg"); /* ИЗМЕНИТЬ: Фоновое изображение для секции героя */
+    background-size: cover; /* Изображение масштабируется так, чтобы покрыть всю секцию */
+    background-position: 15% 25%; /* ИСПРАВЛЕНО И ИЗМЕНИТЬ: Позиция фонового изображения (горизонталь, вертикаль). Убрана лишняя запятая. */
+    background-repeat: no-repeat; /* Запрет повторения фонового изображения */
 }
- 
+
+/* Псевдоэлемент для наложения полупрозрачного слоя поверх изображения */
 .hero-section::before {
-    content: '';
-    position: absolute;
+    content: ''; /* Обязательное свойство для псевдоэлементов */
+    position: absolute; /* Абсолютное позиционирование для наложения */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4); /* CHANGE: Overlay color and transparency for better text readability */
+    background-color: rgba(0, 0, 0, 0.4); /* ИЗМЕНИТЬ: Цвет наложения и его прозрачность (0.4 = 40% непрозрачности) */
 }
- 
+
+/* Содержимое секции героя (текст) */
 .hero-content {
-    position: relative;
-    z-index: 2; /* Ensures content is above the overlay */
+    position: relative; /* Относительное позиционирование, чтобы текст был поверх наложения */
+    z-index: 2; /* Обеспечивает, что содержимое находится выше наложения */
 }
- 
+
+/* Стили для текста "Save the date" */
 .hero-content .save-the-date {
-    font-family: 'Playfair Display', serif; /* CHANGE: Font for "Save the date" */
-    font-size: 2em; /* CHANGE: Font size for "Save the date" */
-    margin-bottom: 10px;
-    font-style: italic;
+    font-family: 'Playfair Display', serif; /* ИЗМЕНИТЬ: Шрифт для текста "Save the date" */
+    font-size: 2em; /* ИЗМЕНИТЬ: Размер шрифта для "Save the date" */
+    margin-bottom: 10px; /* Нижний отступ */
+    font-style: italic; /* Курсивное начертание */
 }
- 
+
+/* Стили для имен Yarik and Karina */
 .hero-content h1 {
-    font-family: 'Playfair Display', serif; /* CHANGE: Font for names (ILLIA & NADIIA) */
-    font-size: 4.5em; /* CHANGE: Font size for names */
-    margin: 0;
-    letter-spacing: 2px;
+    font-family: 'Playfair Display', serif; /* ИЗМЕНИТЬ: Шрифт для имен */
+    font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
+    margin: 0; /* Убираем стандартные отступы */
+    letter-spacing: 2px; /* Межбуквенный интервал */
 }
- 
+
+/* Стили для даты свадьбы */
 .hero-content .wedding-date {
-    font-family: 'Open Sans', sans-serif; /* CHANGE: Font for wedding date */
-    font-size: 1.2em; /* CHANGE: Font size for wedding date */
-    margin-top: 10px;
-    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для даты свадьбы */
+    font-size: 1.2em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
+    margin-top: 10px; /* Верхний отступ */
+    letter-spacing: 1px; /* Межбуквенный интервал */
 }
- 
-/* Our Story Section Styles */
+
+/* Стили для секции "Наша История" */
 .our-story-section {
-    padding: 60px 0;
-    background-color: #ffffff; /* CHANGE: Background color for the story section */
-    background-image: url("seamless-floral-background-with-watercolor-flowers-vector-illustration_753333-4557.avif");
-    text-align: center;
+    padding: 60px 0; /* Внутренние отступы сверху и снизу */
+    background-color: #ffffff; /* ИЗМЕНИТЬ: Цвет фона для секции истории (сейчас белый) */
+    background-image: url("seamless-floral-background-with-watercolor-flowers-vector-illustration_753333-4557.avif"); /* ИЗМЕНИТЬ: Фоновое изображение для секции истории */
+    background-size: cover; /* Изображение масштабируется так, чтобы покрыть всю секцию */
+    background-repeat: no-repeat; /* Запрет повторения фонового изображения */
+    background-position: center center; /* Центрируем фоновое изображение */
+    text-align: center; /* Выравнивание текста по центру внутри секции */
 }
- 
+
+/* Стили для заголовков секций (например, "НАША ИСТОРИЯ") */
 .section-title {
-    font-family: 'Playfair Display', serif; /* CHANGE: Font for section titles */
-    font-size: 3em; /* CHANGE: Font size for section titles */
-    color: #bdb2b2; /* CHANGE: Color for section titles */
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-family: 'Playfair Display', serif; /* ИЗМЕНИТЬ: Шрифт для заголовков секций */
+    font-size: 3em; /* ИЗМЕНИТЬ: Размер шрифта для заголовков секций */
+    color: #bdb2b2; /* ИЗМЕНИТЬ: Цвет для заголовков секций (сейчас серый) */
+    margin-bottom: 40px; /* Нижний отступ */
+    text-transform: uppercase; /* Текст в верхнем регистре */
+    letter-spacing: 1px; /* Межбуквенный интервал */
 }
- 
+
+/* Стили для курсивного текста внутри заголовка (например, "любви") */
 .section-title .cursive-text {
-    font-family: 'Playfair Display', serif; /* CHANGE: Font for the cursive "любви" */
-    font-style: italic;
-    color: #a3a3a3; /* CHANGE: Color for the cursive "любви" */
+    font-family: 'Playfair Display', serif; /* ИЗМЕНИТЬ: Шрифт для курсивного текста "любви" */
+    font-style: italic; /* Курсивное начертание */
+    color: #a3a3a3; /* ИЗМЕНИТЬ: Цвет для курсивного текста "любви" (сейчас светло-серый) */
 }
- 
+
+/* Контейнер для текста и изображения в секции истории */
 .story-content {
-    display: flex;
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
-    align-items: center;
-    gap: 40px; /* Space between text and image */
-    text-align: left;
+    display: flex; /* Использование Flexbox */
+    flex-wrap: wrap; /* Разрешает элементам переноситься на новую строку на маленьких экранах */
+    align-items: center; /* Выравнивание элементов по центру по вертикали */
+    gap: 40px; /* ИЗМЕНИТЬ: Расстояние между текстовым блоком и изображением */
+    text-align: left; /* Выравнивание текста по левому краю внутри этого блока */
 }
- 
+
+/* Текстовый блок в секции истории */
 .story-text {
-    flex: 2; /* Allows this div to take up more space */
-    min-width: 300px; /* Ensures text doesn't get too narrow */
-    padding-right: 20px;
+    flex: 2; /* Позволяет этому блоку занимать в 2 раза больше места */
+    min-width: 300px; /* Минимальная ширина, чтобы текст не был слишком узким */
+    padding-right: 20px; /* Правый внутренний отступ */
 }
- 
+
+/* Параграфы в текстовом блоке истории */
 .story-text p {
-    font-size: 1.1em; /* CHANGE: Font size for story paragraphs */
-    margin-bottom: 15px;
-    color: #c8c8c8; /* CHANGE: Color for story paragraphs */
+    font-size: 1.1em; /* ИЗМЕНИТЬ: Размер шрифта для параграфов истории */
+    margin-bottom: 15px; /* Нижний отступ */
+    color: #c8c8c8; /* ИЗМЕНИТЬ: Цвет для параграфов истории (сейчас светло-серый) */
 }
- 
+
+/* Заголовок "МЫ ЖЕНИМСЯ!" */
 .story-text h3 {
-    font-family: 'Playfair Display', serif; /* CHANGE: Font for "МЫ ЖЕНИМСЯ!" */
-    font-size: 1.8em; /* CHANGE: Font size for "МЫ ЖЕНИМСЯ!" */
-    color: #6a4c93; /* CHANGE: Color for "МЫ ЖЕНИМСЯ!" */
-    margin-top: 30px;
-    text-transform: uppercase;
+    font-family: 'Playfair Display', serif; /* ИЗМЕНИТЬ: Шрифт для "МЫ ЖЕНИМСЯ!" */
+    font-size: 1.8em; /* ИЗМЕНИТЬ: Размер шрифта для "МЫ ЖЕНИМСЯ!" */
+    color: #6a4c93; /* ИЗМЕНИТЬ: Цвет для "МЫ ЖЕНИМСЯ!" */
+    margin-top: 30px; /* Верхний отступ */
+    text-transform: uppercase; /* Текст в верхнем регистре */
 }
- 
+
+/* Блок изображения в секции истории */
 .story-image {
-    flex: 1; /* Allows this div to take up remaining space */
-    min-width: 250px; /* Ensures image doesn't get too small */
-    text-align: center;
+    flex: 1; /* Позволяет этому блоку занимать оставшееся место */
+    min-width: 250px; /* Обеспечивает, что изображение не будет слишком маленьким */
+    text-align: center; /* Выравнивание изображения по центру */
 }
- 
+
+/* Стили для самого изображения в секции истории */
 .story-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px; /* CHANGE: Border radius for story image */
-    box-shadow: 0 4px 8px rgba(209, 209, 209, 0.1); /* CHANGE: Shadow for story image */
+    max-width: 100%; /* Максимальная ширина изображения - 100% от родительского контейнера */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    border-radius: 8px; /* ИЗМЕНИТЬ: Скругление углов изображения */
+    box-shadow: 0 4px 8px rgba(209, 209, 209, 0.1); /* ИЗМЕНИТЬ: Тень для изображения (горизонтальное смещение, вертикальное смещение, размытие, цвет с прозрачностью) */
 }
- 
-/* Footer Styles */
+
+/* Стили для подвала страницы (футера) */
 footer {
-    background-color: #333; /* CHANGE: Background color for footer */
-    color: #fff; /* CHANGE: Text color for footer */
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
-    font-size: 0.9em;
+    background-color: #333; /* ИЗМЕНИТЬ: Цвет фона для подвала */
+    color: #fff; /* ИЗМЕНИТЬ: Цвет текста для подвала */
+    text-align: center; /* Выравнивание текста по центру */
+    padding: 20px 0; /* Внутренние отступы сверху и снизу */
+    margin-top: 40px; /* Верхний внешний отступ */
+    font-size: 0.9em; /* Размер шрифта */
 }
- 
-/* Responsive Design */
+
+/* Адаптивный дизайн: Медиа-запрос для экранов шириной до 768px */
 @media (max-width: 768px) {
     .hero-content h1 {
-        font-size: 3em; /* Smaller font size for names on smaller screens */
+        font-size: 3em; /* Уменьшенный размер шрифта для имен на маленьких экранах */
     }
- 
+
     .hero-content .save-the-date {
-        font-size: 1.5em;
+        font-size: 1.5em; /* Уменьшенный размер шрифта для "Save the date" */
     }
- 
+
     .section-title {
-        font-size: 2.5em;
+        font-size: 2.5em; /* Уменьшенный размер шрифта для заголовков секций */
     }
- 
+
     .story-content {
-        flex-direction: column; /* Stack items vertically on small screens */
+        flex-direction: column; /* Элементы Flexbox располагаются вертикально (столбцом) на маленьких экранах */
+        gap: 25px; /* ИЗМЕНИТЬ: Расстояние между элементами на маленьких экранах */
     }
- 
+
     .story-text, .story-image {
-        padding: 0;
-        min-width: unset; /* Remove min-width constraint */
+        padding: 0; /* Убираем внутренние отступы */
+        min-width: unset; /* Сбрасываем ограничение минимальной ширины */
+        width: 100%; /* Гарантируем полную ширину на маленьких экранах */
     }
 }
- 
+
+/* Адаптивный дизайн: Медиа-запрос для экранов шириной до 480px */
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 2.5em;
+        font-size: 2.5em; /* Еще более уменьшенный размер шрифта для имен */
     }
- 
+
     .section-title {
-        font-size: 2em;
+        font-size: 2em; /* Еще более уменьшенный размер шрифта для заголовков */
     }
- 
+
     .story-text p {
-        font-size: 1em;
+        font-size: 1em; /* Еще более уменьшенный размер шрифта для параграфов */
     }
 }
