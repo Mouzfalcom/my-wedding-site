@@ -49,7 +49,7 @@ body {
 
 /* Стили для текста "Save the date" */
 .hero-content .save-the-date {
-    font-family: 'Playfair Display', serif; /* ИЗМЕНИТЬ: Шрифт для текста "Save the date" */
+    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для текста "Save the date" */
     font-size: 2em; /* ИЗМЕНИТЬ: Размер шрифта для "Save the date" */
     margin-bottom: 10px; /* Нижний отступ */
     font-style: italic; /* Курсивное начертание */
@@ -57,8 +57,25 @@ body {
 
 /* Стили для имен Yarik and Karina */
 .hero-content h1 {
-    font-family: 'Playfair Display', serif; /* ИЗМЕНИТЬ: Шрифт для имен */
+    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для имен */
     font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
+    background-size: left center;
+    margin: 0; /* Убираем стандартные отступы */
+    letter-spacing: 2px; /* Межбуквенный интервал */
+}
+/* Стили для имен Yarik and Karina */
+.hero-content h2 {
+    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для имен */
+    font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
+    background-size:  center;
+    margin: 0; /* Убираем стандартные отступы */
+    letter-spacing: 2px; /* Межбуквенный интервал */
+}
+/* Стили для имен Yarik and Karina */
+.hero-content h3{
+    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для имен */
+    font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
+    background-size: right center;
     margin: 0; /* Убираем стандартные отступы */
     letter-spacing: 2px; /* Межбуквенный интервал */
 }
