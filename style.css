@@ -4,7 +4,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    color: #333; /* CHANGE: Default text color */
+    color: #ffffff; /* CHANGE: Default text color */
     background-color: #16c7d7; /* CHANGE: Overall background color */
 }
  
@@ -68,14 +68,14 @@ body {
 /* Our Story Section Styles */
 .our-story-section {
     padding: 60px 0;
-    background-color: #fff; /* CHANGE: Background color for the story section */
+    background-color: #2258bc; /* CHANGE: Background color for the story section */
     text-align: center;
 }
  
 .section-title {
     font-family: 'Playfair Display', serif; /* CHANGE: Font for section titles */
     font-size: 3em; /* CHANGE: Font size for section titles */
-    color: #6a4c93; /* CHANGE: Color for section titles */
+    color: #bdb2b2; /* CHANGE: Color for section titles */
     margin-bottom: 40px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -84,7 +84,7 @@ body {
 .section-title .cursive-text {
     font-family: 'Playfair Display', serif; /* CHANGE: Font for the cursive "любви" */
     font-style: italic;
-    color: #b8860b; /* CHANGE: Color for the cursive "любви" */
+    color: #a3a3a3; /* CHANGE: Color for the cursive "любви" */
 }
  
 .story-content {
@@ -104,7 +104,7 @@ body {
 .story-text p {
     font-size: 1.1em; /* CHANGE: Font size for story paragraphs */
     margin-bottom: 15px;
-    color: #555; /* CHANGE: Color for story paragraphs */
+    color: #c8c8c8; /* CHANGE: Color for story paragraphs */
 }
  
 .story-text h3 {
@@ -125,7 +125,7 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 8px; /* CHANGE: Border radius for story image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* CHANGE: Shadow for story image */
+    box-shadow: 0 4px 8px rgba(209, 209, 209, 0.1); /* CHANGE: Shadow for story image */
 }
  
 /* Footer Styles */
