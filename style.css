@@ -48,18 +48,10 @@ body {
     z-index: 2; /* Обеспечивает, что содержимое находится выше наложения */
 }
 
-/* Стили для текста "Save the date" */
-.hero-content .save-the-date {
-    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для текста "Save the date" */
-    font-size: 2em; /* ИЗМЕНИТЬ: Размер шрифта для "Save the date" */
-    margin-bottom: 10px; /* Нижний отступ */
-    font-style: italic; /* Курсивное начертание */
-}
-
 /* Стили для имен Yarik and Karina */
 .hero-content h1 {
     padding: 70px 0; /* Внутренние отступы сверху и снизу */
-    font-size: 2,5em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
+    font-size: 2em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
     position: relative; /* Центрируем фоновое изображение */
     text-align: center;
     top: 20%;
@@ -79,7 +71,7 @@ body {
 
 .hero-content h3 {
     padding: 60px 0; /* Внутренние отступы сверху и снизу */  
-    font-size: 2,5em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
+    font-size: 2em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
     position: relative; /* Центрируем фоновое изображение */
     text-align: center;
     top: -136px;
