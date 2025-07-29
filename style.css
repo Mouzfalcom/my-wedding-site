@@ -59,7 +59,7 @@ body {
 /* Стили для имен Yarik and Karina */
 .hero-content h1 {
     padding: 70px 0; /* Внутренние отступы сверху и снизу */
-    font-size: 3em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
+    font-size: 2em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
     position: relative; /* Центрируем фоновое изображение */
     text-align: center;
     top: 20%;
@@ -79,7 +79,7 @@ body {
 
 .hero-content h3 {
     padding: 60px 0; /* Внутренние отступы сверху и снизу */  
-    font-size: 3em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
+    font-size: 2em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
     position: relative; /* Центрируем фоновое изображение */
     text-align: center;
     top: -136px;
