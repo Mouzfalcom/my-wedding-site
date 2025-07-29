@@ -58,13 +58,13 @@ body {
 
 /* Стили для имен Yarik and Karina */
 .hero-content h1 {
-    padding: 60px 0; /* Внутренние отступы сверху и снизу */
+    padding: 70px 0; /* Внутренние отступы сверху и снизу */
     font-size: 3em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
     position: relative; /* Центрируем фоновое изображение */
     text-align: center;
-    top: 10%;
-    transform: translateY(20%);
-    transform: translateX(-60%);
+    top: 20%;
+    transform: translateY(45px);
+    transform: translateX(-65%);
 }
 /* Стили для имен Yarik and Karina */
 .hero-content h2 {
@@ -97,6 +97,15 @@ body {
     letter-spacing: 1px; /* Межбуквенный интервал */
 }
 
+.section-separator {
+    width: 1px; /* ИЗМЕНИТЬ: Ширина полосы (можно 100% или меньше для центрирования) */
+    height: 4px; /* ИЗМЕНИТЬ: Высота/толщина полосы */
+    background-color: #000000; /* ИЗМЕНИТЬ: Цвет полосы (сейчас золотистый) */
+    background-color: #000000;
+    margin:  auto; /* ИЗМЕНИТЬ: Отступы сверху/снизу и центрирование по горизонтали */
+    border-radius: 2px; /* Небольшое скругление углов, если нужно */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Небольшая тень для объема */
+}
 
 /* Стили для секции "Наша История" */
 .our-story-section {
