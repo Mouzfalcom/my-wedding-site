@@ -39,7 +39,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4); /* ИЗМЕНИТЬ: Цвет наложения и его прозрачность (0.4 = 40% непрозрачности) */
+    background-color: rgba(255, 255, 255, 0.4); /* ИЗМЕНИТЬ: Цвет наложения и его прозрачность (0.4 = 40% непрозрачности) */
 }
 
 /* Содержимое секции героя (текст) */
@@ -58,36 +58,45 @@ body {
 
 /* Стили для имен Yarik and Karina */
 .hero-content h1 {
-    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для имен */
-    font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
-    background-size: left ;
-    margin: 0; /* Убираем стандартные отступы */
-    letter-spacing: 2px; /* Межбуквенный интервал */
+    padding: 60px 0; /* Внутренние отступы сверху и снизу */
+    font-size: 3em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
+    position: relative; /* Центрируем фоновое изображение */
+    text-align: center;
+    top: 10%;
+    transform: translateY(20%);
+    transform: translateX(-60%);
 }
 /* Стили для имен Yarik and Karina */
 .hero-content h2 {
     font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для имен */
-    font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
-    background-size:  center;
-    margin: 0; /* Убираем стандартные отступы */
-    letter-spacing: 2px; /* Межбуквенный интервал */
+    font-size: 45px; /* ИЗМЕНИТЬ: Размер шрифта для имен */
+    position: relative;
+    text-align: center bottom;
+    top: -73px;
+    letter-spacing: 8px; /* Межбуквенный интервал */
 }
-/* Стили для имен Yarik and Karina */
-.hero-content h3{
-    font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для имен */
-    font-size: 4.5em; /* ИЗМЕНИТЬ: Размер шрифта для имен */
-    background-size: right ;
-    margin: 0; /* Убираем стандартные отступы */
-    letter-spacing: 2px; /* Межбуквенный интервал */
+    /* Стили для имен Yarik and Karina */
+
+.hero-content h3 {
+    padding: 60px 0; /* Внутренние отступы сверху и снизу */  
+    font-size: 3em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
+    position: relative; /* Центрируем фоновое изображение */
+    text-align: center;
+    top: -136px;
+    transform: translateY(20%);
+    transform: translateX(55%);
 }
 
-/* Стили для даты свадьбы */
 .hero-content .wedding-date {
     font-family: 'Open Sans', sans-serif; /* ИЗМЕНИТЬ: Шрифт для даты свадьбы */
     font-size: 1.2em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
-    margin-top: 10px; /* Верхний отступ */
+    margin-top: 5px; /* Верхний отступ */
+    position: relative; /* Центрируем фоновое изображение */
+    text-align: center;
+    top: -170px;
     letter-spacing: 1px; /* Межбуквенный интервал */
 }
+
 
 /* Стили для секции "Наша История" */
 .our-story-section {
@@ -173,6 +182,31 @@ footer {
     padding: 20px 0; /* Внутренние отступы сверху и снизу */
     margin-top: 40px; /* Верхний внешний отступ */
     font-size: 0.9em; /* Размер шрифта */
+}
+
+@media (max-width: 1280x) {
+    .hero-content h1 {
+        font-size: 3em; /* Уменьшенный размер шрифта для имен на маленьких экранах */
+    }
+
+    .hero-content .save-the-date {
+        font-size: 1.5em; /* Уменьшенный размер шрифта для "Save the date" */
+    }
+
+    .section-title {
+        font-size: 2.5em; /* Уменьшенный размер шрифта для заголовков секций */
+    }
+
+    .story-content {
+        flex-direction: column; /* Элементы Flexbox располагаются вертикально (столбцом) на маленьких экранах */
+        gap: 25px; /* ИЗМЕНИТЬ: Расстояние между элементами на маленьких экранах */
+    }
+
+    .story-text, .story-image {
+        padding: 0; /* Убираем внутренние отступы */
+        min-width: unset; /* Сбрасываем ограничение минимальной ширины */
+        width: 100%; /* Гарантируем полную ширину на маленьких экранах */
+    }
 }
 
 /* Адаптивный дизайн: Медиа-запрос для экранов шириной до 768px */
