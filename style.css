@@ -199,7 +199,7 @@ footer {
     }
 
     .hero-content .save-the-date {
-        font-size: 1.5em; /* Уменьшенный размер шрифта для "Save the date" */
+        font-size: 3.5em; /* Уменьшенный размер шрифта для "Save the date" */
     }
 
     .section-title {
@@ -214,7 +214,7 @@ footer {
     .story-text, .story-image {
         padding: 0; /* Убираем внутренние отступы */
         min-width: unset; /* Сбрасываем ограничение минимальной ширины */
-        width: 90%; /* Гарантируем полную ширину на маленьких экранах */
+        width: 100%; /* Гарантируем полную ширину на маленьких экранах */
     }
 }
 
