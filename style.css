@@ -39,7 +39,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(180, 176, 176, 0.4); /* ИЗМЕНИТЬ: Цвет наложения и его прозрачность (0.4 = 40% непрозрачности) */
+    background-color: rgba(147, 139, 139, 0.192); /* ИЗМЕНИТЬ: Цвет наложения и его прозрачность (0.4 = 40% непрозрачности) */
 }
 
 /* Содержимое секции героя (текст) */
@@ -66,7 +66,11 @@ body {
     text-align: right;
     transform: translateY(70px);
     transform: translateX(-60%);
-    top: 20px;
+    top: 20px; 
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 /* Стили для символа "&" (h2) */
@@ -80,7 +84,12 @@ body {
    top: -120px;
    transform: translateY(20%);
    transform: translateX(40%);
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
    margin-top: 200px
+   
 }  
 
 /* Стили для имен Karina (h3) */
@@ -94,6 +103,10 @@ body {
    top: -120px;
    transform: translateY(20%);
    transform: translateX(90%);
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 /* Стили для даты свадьбы */
@@ -102,10 +115,12 @@ body {
     font-size: 1.2em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
     color: #de9c00; /* ИЗМЕНИТЬ: Цвет текста */
     letter-spacing: 1px; /* Межбуквенный интервал */
-    margin-top: 170px; /* Верхний отступ */
-    /* Сбрасываем позиционирование для базового поведения */
-   text-align: center;
+    margin-top: -500px; /* Верхний отступ */
    font-weight: 900;
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
    }
 
 /* Стили для полосы-разделителя */
@@ -141,7 +156,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-   background-color: rgba(180, 176, 176, 0.3);
+   background-color: rgba(147, 139, 139, 0.192);
     z-index: 0; /* Убедитесь, что он под содержимым */
 }
 
@@ -310,16 +325,16 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: 2.5em; /* Уменьшенный размер шрифта для имен */
+        font-size: 4em; /* Уменьшенный размер шрифта для имен */
     }
 
     .hero-content h2 {
-        font-size: 2em; /* Уменьшенный размер шрифта для '&' */
+        font-size: 4em; /* Уменьшенный размер шрифта для '&' */
         margin: -5px 0 -5px 0; /* Уменьшаем отступы */
     }
 
     .hero-content h3 {
-        font-size: 2.5em; /* Уменьшенный размер шрифта для имен */
+        font-size: 4em; /* Уменьшенный размер шрифта для имен */
     }
 
     .hero-content .wedding-date {
@@ -376,21 +391,21 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: 2.5em; /* Уменьшенный размер шрифта для имен */
+        font-size: 3em; /* Уменьшенный размер шрифта для имен */
     }
 
     .hero-content h2 {
-        font-size: 2em; /* Уменьшенный размер шрифта для '&' */
+        font-size: 3em; /* Уменьшенный размер шрифта для '&' */
         margin: -5px 0 -5px 0; /* Уменьшаем отступы */
     }
 
     .hero-content h3 {
-        font-size: 2.5em; /* Уменьшенный размер шрифта для имен */
+        font-size: 3em; /* Уменьшенный размер шрифта для имен */
     }
 
     .hero-content .wedding-date {
         font-size: 1em; /* Уменьшенный размер шрифта для даты */
-        margin-top: 10px; /* Скорректированный верхний отступ */
+        margin-top: 40px; /* Скорректированный верхний отступ */
     }
 
     .section-separator {
@@ -436,22 +451,22 @@ footer {
 @media (max-width: 480px) {
      .section-separator {
         width: 90%; /* Полоса шире на мобильных */
-        margin: 40px auto; /* Скорректированные отступы */
+        margin:  auto; /* Скорректированные отступы */
     }
     .hero-section {
         height: 80vh; /* Еще немного увеличиваем высоту для очень маленьких экранов */
     }
 
     .hero-content h1 {
-        font-size: 3em; /* Еще более уменьшенный размер шрифта для имен */
+        font-size: 2,5em; /* Еще более уменьшенный размер шрифта для имен */
     }
     .hero-content h2 {
-        font-size: 3em; /* Еще более уменьшенный размер шрифта для '&' */
+        font-size: 2,5em; /* Еще более уменьшенный размер шрифта для '&' */
         letter-spacing: 5px; /* Уменьшаем межбуквенный интервал */
        
     }
     .hero-content h3 {
-        font-size: 3em; /* Еще более уменьшенный размер шрифта для имен */
+        font-size: 2,5em; /* Еще более уменьшенный размер шрифта для имен */
     }
     .hero-content .wedding-date {
         font-size: 110%;
@@ -482,24 +497,24 @@ footer {
 }
 
 /* Медиа-запрос для очень маленьких экранов шириной до 320px (iPhone 5/SE и т.п.) */
-@media (max-width: 320px) {
+@media (max-width: 390px) {
      .section-separator {
-        width: 80%; /* Полоса шире на мобильных */
-        margin: 40px auto; /* Скорректированные отступы */
+        width: 100%; /* Полоса шире на мобильных */
+        margin:  auto; /* Скорректированные отступы */
     }
     .hero-section {
         height: 85vh; /* Еще больше увеличиваем высоту */
     }
 
     .hero-content h1 {
-        font-size: 1.8em;
+        font-size: 2em;
     }
     .hero-content h2 {
-        font-size: 1.3em;
+        font-size: 1,5em;
         letter-spacing: 3px;
     }
     .hero-content h3 {
-        font-size: 1.8em;
+        font-size: 2em;
     }
     .hero-content .wedding-date {
         font-size: 1,9em;
