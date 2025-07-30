@@ -39,7 +39,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(226, 225, 225, 0.4); /* ИЗМЕНИТЬ: Цвет наложения и его прозрачность (0.4 = 40% непрозрачности) */
+    background-color: rgba(180, 176, 176, 0.4); /* ИЗМЕНИТЬ: Цвет наложения и его прозрачность (0.4 = 40% непрозрачности) */
 }
 
 /* Содержимое секции героя (текст) */
@@ -58,38 +58,42 @@ body {
 
 /* Стили для имен Yarik (h1) */
 .hero-content h1 {
-    font-family: 'Oswald', sans-serif; /* Убедитесь, что шрифт подключен */
-    font-size: 3.5em; /* ИЗМЕНИТЬ: Размер шрифта для имени "Ярослав" */
+    font-family: 'Oswald'; /* Убедитесь, что шрифт подключен */
+    font-size: 100%; /* ИЗМЕНИТЬ: Размер шрифта для имени "Ярослав" */
     color: #de9c00; /* ИЗМЕНИТЬ: Цвет текста */
     margin: 0; /* Убираем лишние отступы */
     /* Сбрасываем трансформации и позиционирование для базового поведения */
-    position: static;
-    transform: none;
-    top: auto;
+    text-align: right;
+    transform: translateY(70px);
+    transform: translateX(-60%);
+    top: 20px;
 }
 
 /* Стили для символа "&" (h2) */
 .hero-content h2 {
     font-family: 'Oswald', sans-serif; /* ИЗМЕНИТЬ: Шрифт для символа "&" */
-    font-size: 2.5em; /* ИЗМЕНИТЬ: Размер шрифта для символа "&" */
+    font-size: 20em; /* ИЗМЕНИТЬ: Размер шрифта для символа "&" */
     color: #de9c00; /* ИЗМЕНИТЬ: Цвет текста */
     letter-spacing: 8px; /* Межбуквенный интервал */
     margin: -10px 0 -10px 0; /* ИЗМЕНИТЬ: Отрицательные отступы для сближения с именами */
     /* Сбрасываем позиционирование для базового поведения */
-    position: static;
-    top: auto;
-}
+   top: -120px;
+   transform: translateY(20%);
+   transform: translateX(40%);
+   margin-top: 200px
+}  
 
 /* Стили для имен Karina (h3) */
 .hero-content h3 {
     font-family: 'Oswald', sans-serif; /* Убедитесь, что шрифт подключен */
-    font-size: 3.5em; /* ИЗМЕНИТЬ: Размер шрифта для имени "Каріна" */
+    font-size: 6em; /* ИЗМЕНИТЬ: Размер шрифта для имени "Каріна" */
     color: #de9c00; /* ИЗМЕНИТЬ: Цвет текста */
     margin: 0; /* Убираем лишние отступы */
     /* Сбрасываем трансформации и позиционирование для базового поведения */
-    position: static;
-    transform: none;
-    top: auto;
+   text-align: center;
+   top: -120px;
+   transform: translateY(20%);
+   transform: translateX(90%);
 }
 
 /* Стили для даты свадьбы */
@@ -98,11 +102,11 @@ body {
     font-size: 1.2em; /* ИЗМЕНИТЬ: Размер шрифта для даты свадьбы */
     color: #de9c00; /* ИЗМЕНИТЬ: Цвет текста */
     letter-spacing: 1px; /* Межбуквенный интервал */
-    margin-top: 15px; /* Верхний отступ */
+    margin-top: 170px; /* Верхний отступ */
     /* Сбрасываем позиционирование для базового поведения */
-    position: static;
-    top: auto;
-}
+   text-align: center;
+   font-weight: 900;
+   }
 
 /* Стили для полосы-разделителя */
 .section-separator {
@@ -118,7 +122,7 @@ body {
 /* Стили для секции "Наша История" */
 .our-story-section {
     padding: 60px 0; /* Внутренние отступы сверху и снизу */
-    background-color: #ffffff; /* ИЗМЕНИТЬ: Цвет фона для секции истории (сейчас белый). Использован как основной цвет, если изображение не загрузится. */
+    background-color: #d4cece; /* ИЗМЕНИТЬ: Цвет фона для секции истории (сейчас белый). Использован как основной цвет, если изображение не загрузится. */
     background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg"); /* ИЗМЕНИТЬ: Фоновое изображение для секции истории */
     background-attachment: fixed; /* Фон фиксирован при прокрутке */
     background-size: cover; /* Изображение масштабируется так, чтобы покрыть всю секцию */
@@ -137,7 +141,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.7); /* ИЗМЕНИТЬ: Цвет и прозрачность overlay для секции истории (полупрозрачный белый) */
+   background-color: rgba(180, 176, 176, 0.3);
     z-index: 0; /* Убедитесь, что он под содержимым */
 }
 
@@ -238,35 +242,64 @@ footer {
 /* Медиа-запрос для экранов шириной до 1280px (для средних экранов/планшетов) */
 @media (max-width: 1280px) { /* ИСПРАВЛЕНО: Опечатка 'x' исправлена на 'px' */
     /* Здесь можно скорректировать размеры шрифтов для больших планшетов */
-     .section-separator {
-        width: 90%; /* Полоса шире на мобильных */
-        margin: 40px auto; /* Скорректированные отступы */
-    }
-    .hero-content h1 {
-        font-size: 3em;
-    }
-    .hero-content h2 {
-        font-size: 2em;
-    }
-    .hero-content h3 {
-        font-size: 3em;
-    }
-    .hero-content .wedding-date {
-        font-size: 1.1em;
+    .hero-section {
+        height: 75vh; /* Увеличиваем высоту для лучшего размещения на мобильных */
     }
 
+    .hero-content h1 {
+        font-size: 2.5em; /* Уменьшенный размер шрифта для имен */
+    }
+
+    .hero-content h2 {
+        font-size: 2em; /* Уменьшенный размер шрифта для '&' */
+        margin: -5px 0 -5px 0; /* Уменьшаем отступы */
+    }
+
+    .hero-content h3 {
+        font-size: 2.5em; /* Уменьшенный размер шрифта для имен */
+    }
+
+    .hero-content .wedding-date {
+        font-size: 1em; /* Уменьшенный размер шрифта для даты */
+        margin-top: 10px; /* Скорректированный верхний отступ */
+    }
+
+    .section-separator {
+        width: 100%; /* Полоса шире на мобильных */
+        margin: 0; /* Скорректированные отступы */
+    }
+
+    /* Секция истории */
     .section-title {
-        font-size: 2.5em;
+        font-size: 2em; /* Уменьшенный размер шрифта для заголовков секций */
     }
 
     .story-content {
-        gap: 30px; /* Уменьшаем расстояние между элементами */
+        flex-direction: column; /* Элементы Flexbox располагаются вертикально (столбцом) */
+        gap: 25px; /* ИЗМЕНИТЬ: Расстояние между элементами */
+        text-align: center; /* Центрируем текст на мобильных */
     }
 
-    .story-text, .story-image {
-        padding: 0;
-        min-width: unset; /* Сбрасываем ограничение минимальной ширины */
-        width: 90%; /* Гарантируем полную ширину на этих экранах */
+    .story-text {
+        padding-right: 0; /* Убираем правый отступ */
+        width: 100%; /* Занимает всю ширину */
+    }
+
+    .story-text p {
+        font-size: 1em; /* Уменьшенный размер шрифта для параграфов */
+    }
+
+    .story-text h3 {
+        font-size: 1.6em; /* Уменьшенный размер шрифта для h3 */
+    }
+
+    .story-text h4 {
+        font-size: 1.1em; /* Уменьшенный размер шрифта для h4 */
+    }
+
+    .story-image {
+        min-width: unset; /* Сбрасываем min-width */
+        width: 90%; /* Устанавливаем ширину изображения (можно 100% если хотите на весь экран) */
     }
 }
 
@@ -347,19 +380,21 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: 2em; /* Еще более уменьшенный размер шрифта для имен */
+        font-size: 3em; /* Еще более уменьшенный размер шрифта для имен */
     }
     .hero-content h2 {
-        font-size: 1.5em; /* Еще более уменьшенный размер шрифта для '&' */
+        font-size: 3em; /* Еще более уменьшенный размер шрифта для '&' */
         letter-spacing: 5px; /* Уменьшаем межбуквенный интервал */
-        margin: -5px 0 -5px 0;
+       
     }
     .hero-content h3 {
-        font-size: 2em; /* Еще более уменьшенный размер шрифта для имен */
+        font-size: 3em; /* Еще более уменьшенный размер шрифта для имен */
     }
     .hero-content .wedding-date {
-        font-size: 0.9em; /* Еще более уменьшенный размер шрифта для даты */
-        margin-top: 8px;
+        font-size: 110%;
+        margin-top: 20%;
+        font-weight: 800;
+        
     }
 
     .section-separator {
@@ -404,7 +439,7 @@ footer {
         font-size: 1.8em;
     }
     .hero-content .wedding-date {
-        font-size: 0.85em;
+        font-size: 1,9em;
     }
 
     .section-title {
