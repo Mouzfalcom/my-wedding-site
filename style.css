@@ -24,13 +24,13 @@ body {
     justify-content: center;
     align-items: center;
     color: #de9c00;
-    text-align: center;
-    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg"); /* */
+    background-image: url("IMG_3657.CR2"); /* Обновленный путь к изображению */
     background-attachment: local;
     background-size: cover;
     background-position: 15% 25%;
     background-repeat: no-repeat;
     overflow: hidden;
+    text-align: center;
 }
 
 /* Псевдоэлемент для наложения полупрозрачного слоя поверх изображения */
@@ -40,7 +40,8 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
+    background-color: rgba(147, 139, 139, 0.25);
     z-index: 1;
 }
 
@@ -85,7 +86,7 @@ body {
 
 /* Стили для символа "&" (h2) */
 .hero-content .ampersand {
-    font-family: 'Pacifico', cursive; 
+    font-family: 'Pacifico', cursive;
     font-size: 5em;
     color: #de9c00;
     position: absolute;
@@ -98,7 +99,7 @@ body {
 
 /* Стили для имени "Каріна" (h3) */
 .hero-content .name-karina {
-    font-family: 'Pacifico', cursive; 
+    font-family: 'Pacifico', cursive;
     font-size: 6em;
     color: #de9c00;
     position: absolute;
@@ -111,7 +112,7 @@ body {
 
 /* Стили для даты свадьбы */
 .hero-content .wedding-date {
-    font-family: 'Pacifico', cursive; 
+    font-family: 'Pacifico', cursive;
     font-size: 1.5em;
     color: #de9c00;
     letter-spacing: 3px;
@@ -138,7 +139,7 @@ body {
 .our-story-section {
     padding: 60px 0;
     background-color: #d4cece;
-    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg"); /* */
+    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg"); /* Источник фонового изображения */
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -168,12 +169,56 @@ body {
 
 /* Стили для заголовков секций (например, "ЗАПРОШЕННЯ") */
 .section-title {
+    font-family: 'Oswald', sans-serif;
     font-size: 3em;
     color: #000000;
-    margin-bottom: 40px;
+    margin-bottom: 20px; /* Уменьшаем отступ снизу, чтобы изображение было ближе */
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+/* НОВЫЕ СТИЛИ ДЛЯ ИЗОБРАЖЕНИЯ ПОД ЗАГОЛОВКОМ */
+.invitation-image-wrapper {
+    width: 100%;
+    max-width: 600px; /* Ограничиваем максимальную ширину изображения */
+    margin: 0 auto 40px auto; /* Центрируем и добавляем отступ снизу */
+    border-radius: 15px; /* Скругление углов */
+    overflow: hidden; /* Скрываем все, что выходит за рамки скругления */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Красивая тень */
+}
+
+.invitation-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block; /* Убираем лишние отступы под изображением */
+    object-fit: cover; /* Гарантируем, что изображение покроет всю область без искажений */
+    transform: scale(1); /* Начальное состояние для анимации масштаба */
+    transition: transform 0.3s ease-in-out; /* Плавный переход при наведении */
+}
+
+.invitation-image-wrapper img:hover {
+    transform: scale(1.03); /* Увеличение при наведении */
+}
+
+/* АНИМАЦИЯ ДЛЯ ИЗОБРАЖЕНИЯ */
+.animated-image {
+    opacity: 0; /* Начинаем с невидимого */
+    transform: translateY(20px); /* Начинаем немного ниже */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Применяем анимацию */
+    animation-delay: 0.5s; /* Задержка перед началом анимации */
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* Стили для курсивного текста внутри заголовка (если есть) */
 .section-title .cursive-text {
@@ -202,6 +247,7 @@ body {
 
 /* Параграфы в текстовом блоке истории */
 .story-text p {
+
     font-size: 1.1em;
     margin-bottom: 15px;
     color: #000000;
@@ -222,7 +268,8 @@ body {
     margin-top: 15px;
 }
 
-/* Блок изображения в секции истории */
+/* Блок изображения в секции истории (если вы его оставили в HTML) */
+/* Если вы удалили старый .story-image из HTML, этот блок CSS не нужен */
 .story-image {
     flex: 1;
     min-width: 250px;
@@ -282,25 +329,25 @@ footer {
         height: 85vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 6.5vw; /* Использование vw для масштабирования */
+        font-size: 6.5vw;
         top: 45%;
-        left: 1%; /* Уменьшаем отступ, чтобы дать больше места */
+        left: 1%;
         transform: translateY(-100%);
     }
     .hero-content .ampersand {
-        font-size: 8.5vw; /* Использование vw для масштабирования */
+        font-size: 8.5vw;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .hero-content .name-karina {
-        font-size: 6.5vw; /* Использование vw для масштабирования */
+        font-size: 6.5vw;
         top: 55%;
-        right: 1%; /* Уменьшаем отступ, чтобы дать больше места */
+        right: 1%;
         transform: translateY(0%);
     }
     .hero-content .wedding-date {
-        font-size: 1,2em;
+        font-size: 1.2em;
         margin-bottom: 15px;
     }
     .section-title {
@@ -323,25 +370,25 @@ footer {
         height: 90vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 15vw; /* Использование vw для масштабирования */
+        font-size: 15vw;
         top: 40%;
-        left: 2%; /* Максимально уменьшаем отступ */
+        left: 2%;
         transform: translateY(-100%);
     }
     .hero-content .ampersand {
-        font-size: 14vw; /* Использование vw для масштабирования */
+        font-size: 14vw;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .hero-content .name-karina {
-        font-size: 15vw; /* Использование vw для масштабирования */
+        font-size: 15vw;
         top: 60%;
-        right: 3%; /* Максимально уменьшаем отступ */
+        right: 3%;
         transform: translateY(0%);
     }
     .hero-content .wedding-date {
-        font-size: 1,1em;
+        font-size: 1.1em;
         margin-bottom: 10px;
         letter-spacing: 1px;
     }
@@ -362,25 +409,25 @@ footer {
         height: 95vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 14vw; /* Придется еще больше использовать vw, чтобы поместилось */
+        font-size: 14vw;
         top: 40%;
-        left: 2%; /* Отступ почти нулевой */
+        left: 2%;
         transform: translateY(-100%);
     }
     .hero-content .ampersand {
-        font-size: 13vw; /* Придется еще больше использовать vw */
+        font-size: 13vw;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .hero-content .name-karina {
-        font-size: 14vw; /* Придется еще больше использовать vw */
+        font-size: 14vw;
         top: 60%;
-        right: 3%; /* Отступ почти нулевой */
+        right: 3%;
         transform: translateY(0%);
     }
     .hero-content .wedding-date {
-        font-size: 1,1em;
+        font-size: 1.1em;
         margin-bottom: 5px;
         letter-spacing: 0.5px;
     }
