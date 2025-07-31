@@ -71,7 +71,7 @@ body {
 
 /* Стили для имени "Ярослав" (h1) */
 .hero-content .name-yaroslav {
-    font-family: 'Playwrite PL', cursive;
+    font-family: 'Oswald', sans-serif;
     font-size: 6em;
     color: #de9c00;
     position: absolute;
@@ -84,7 +84,7 @@ body {
 
 /* Стили для символа "&" (h2) */
 .hero-content .ampersand {
-    font-family: 'Playwrite PL', cursive;
+    font-family: 'Oswald', sans-serif;
     font-size: 5em;
     color: #de9c00;
     position: absolute;
@@ -97,7 +97,7 @@ body {
 
 /* Стили для имени "Каріна" (h3) */
 .hero-content .name-karina {
-    font-family: 'Playwrite PL', cursive;
+    font-family: 'Oswald', sans-serif;
     font-size: 6em;
     color: #de9c00;
     position: absolute;
