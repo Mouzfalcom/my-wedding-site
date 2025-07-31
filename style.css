@@ -49,11 +49,7 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-    /* Изменено для flexbox */
-    display: flex;
-    flex-direction: column; /* Элементы будут идти сверху вниз */
-    justify-content: center; /* Центрирование по вертикали */
-    align-items: center; /* Центрирование по горизонтали */
+    display: block;
     width: 100%;
     height: 100%; /* Занимает всю высоту hero-section */
     padding: 20px;
@@ -72,9 +68,10 @@ body {
         -2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+
 /* Стили для имени "Ярослав" (h1) */
 .hero-content .name-yaroslav {
-    font-family: 'Playwrite AU NSW', cursive; /* Используем шрифт из вашего HTML */
+    font-family: 'Playwrite PL', cursive;
     font-size: 6em;
     color: #de9c00;
     position: absolute;
@@ -87,7 +84,7 @@ body {
 
 /* Стили для символа "&" (h2) */
 .hero-content .ampersand {
-    font-family: 'Playwrite AU NSW', cursive; /* Используем шрифт из вашего HTML */
+    font-family: 'Playwrite PL', cursive;
     font-size: 5em;
     color: #de9c00;
     position: absolute;
@@ -100,7 +97,7 @@ body {
 
 /* Стили для имени "Каріна" (h3) */
 .hero-content .name-karina {
-    font-family: 'Playwrite AU NSW', cursive; /* Используем шрифт из вашего HTML */
+    font-family: 'Playwrite PL', cursive;
     font-size: 6em;
     color: #de9c00;
     position: absolute;
@@ -113,17 +110,17 @@ body {
 
 /* Стили для даты свадьбы */
 .hero-content .wedding-date {
-    font-family: 'Oswald', sans-serif; /* Оставляем Oswald для даты */
+    font-family: 'Oswald', sans-serif;
     font-size: 1.5em;
     color: #de9c00;
     letter-spacing: 3px;
-    margin-top: auto; /* Отодвигает дату вниз, используя flexbox */
-    margin-bottom: 20px; /* Небольшой отступ от низа */
+    position: absolute;
+    bottom: 5%; /* Остается внизу */
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
     font-weight: 900;
     white-space: nowrap;
-    position: relative; /* Убираем absolute, т.к. flexbox уже его позиционирует */
-    left: auto;
-    transform: none; /* Сброс трансформации, т.к. она больше не нужна для центрирования */
 }
 
 
@@ -266,7 +263,7 @@ footer {
         transform: translateY(-100%);
     }
     .hero-content .ampersand {
-        font-size: 4.5em;
+        font-size: 5em;
         transform: translate(-50%, -50%);
     }
     .hero-content .name-karina {
@@ -276,7 +273,7 @@ footer {
     }
     .hero-content .wedding-date {
         font-size: 1.2em;
-        margin-bottom: 20px;
+        bottom: 5%;
     }
 
     .section-title {
@@ -284,32 +281,32 @@ footer {
     }
 }
 
-/* Медиа-запрос для экранов шириной до 768px (планшеты в ландшафтном режиме, маленькие ноутбуки) */
+/* Медиа-запрос для экранов шириной до 768px */
 @media (max-width: 768px) {
     .hero-section {
         height: 85vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 3em;
-        top: 45%;
+        font-size: 4em;
+        top: 45%; /* Скорректируем позицию */
         left: 2%;
         transform: translateY(-100%);
     }
     .hero-content .ampersand {
-        font-size: 3em;
-        top: 50%;
+        font-size: 4em;
+        top: 50%; /* Скорректируем позицию */
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .hero-content .name-karina {
-        font-size: 3em;
-        top: 55%;
+        font-size: 4em;
+        top: 55%; /* Скорректируем позицию */
         right: 2%;
         transform: translateY(0%);
     }
     .hero-content .wedding-date {
-        font-size: 0.9em;
-        margin-bottom: 15px;
+        font-size: 1em;
+        bottom: 3%;
     }
 
     .section-title {
@@ -326,32 +323,32 @@ footer {
     }
 }
 
-/* Медиа-запрос для экранов шириной до 480px (большинство смартфонов) */
+/* Медиа-запрос для экранов шириной до 480px */
 @media (max-width: 480px) {
     .hero-section {
         height: 90vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 2em;
+        font-size: 3em;
         top: 40%;
         left: 1%;
         transform: translateY(-100%);
     }
     .hero-content .ampersand {
-        font-size: 2em;
+        font-size: 3em;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .hero-content .name-karina {
-        font-size: 2em;
+        font-size: 3em;
         top: 60%;
         right: 1%;
         transform: translateY(0%);
     }
     .hero-content .wedding-date {
-        font-size: 0.8em;
-        margin-bottom: 10px;
+        font-size: 0.9em;
+        bottom: 2%;
         letter-spacing: 1px;
     }
 
@@ -366,32 +363,32 @@ footer {
     }
 }
 
-/* Медиа-запрос для очень маленьких экранов шириной до 340px (iPhone 5/SE и т.п.) */
+/* Медиа-запрос для очень маленьких экранов шириной до 340px */
 @media (max-width: 340px) {
     .hero-section {
         height: 95vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 1.8em;
+        font-size: 2.2em;
         top: 35%;
         left: 0.5%;
         transform: translateY(-100%);
     }
     .hero-content .ampersand {
-        font-size: 1.8em;
+        font-size: 2,2em;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .hero-content .name-karina {
-        font-size: 1.8em;
+        font-size: 2.2em;
         top: 65%;
         right: 0.5%;
         transform: translateY(0%);
     }
     .hero-content .wedding-date {
-        font-size: 0.7em;
-        margin-bottom: 5px;
+        font-size: 0.8em;
+        bottom: 1%;
         letter-spacing: 0.5px;
     }
 
