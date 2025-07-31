@@ -1,6 +1,6 @@
 /* Общие стили для всего тела страницы */
 body {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Pacifico', cursive;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -40,8 +40,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background-color: rgba(217, 207, 207, 0.312);
+    bottom: 0; 
     z-index: 1;
 }
 
@@ -73,7 +72,7 @@ body {
 
 /* Стили для имени "Ярослав" (h1) */
 .hero-content .name-yaroslav {
-    font-family: 'Pacifico', cursive; /* Используем Pacifico */
+    font-family: 'Pacifico', cursive;
     font-size: 6em;
     color: #de9c00;
     position: absolute;
@@ -169,7 +168,6 @@ body {
 
 /* Стили для заголовков секций (например, "ЗАПРОШЕННЯ") */
 .section-title {
-    font-family: 'Oswald', sans-serif;
     font-size: 3em;
     color: #000000;
     margin-bottom: 40px;
@@ -179,7 +177,6 @@ body {
 
 /* Стили для курсивного текста внутри заголовка (если есть) */
 .section-title .cursive-text {
-    font-family: 'Oswald', sans-serif;
     font-style: italic;
     color: #000000;
 }
@@ -212,7 +209,6 @@ body {
 
 /* Заголовок "Проведемо чудовий час разом на весіллі !" (h3) */
 .story-text h3 {
-    font-family: 'Oswald', sans-serif;
     font-size: 1.8em;
     color: #000000;
     margin-top: 30px;
@@ -221,7 +217,6 @@ body {
 
 /* Добавлен стиль для h4 */
 .story-text h4 {
-    font-family: 'Oswald', sans-serif;
     font-size: 1.2em;
     color: #000000;
     margin-top: 15px;
