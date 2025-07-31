@@ -139,7 +139,9 @@ body {
 .our-story-section {
     padding: 60px 0;
     background-color: #d4cece;
-    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg"); /* Источник фонового изображения */
+    /* УБИРАЕМ ИМЕНА С ФОНА ВТОРОЙ СТРАНИЦЫ: */
+    /* Убедитесь, что 'photo_5213043914917934867_y.jpg' - это изображение БЕЗ имен */
+    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -169,43 +171,42 @@ body {
 
 /* Стили для заголовков секций (например, "ЗАПРОШЕННЯ") */
 .section-title {
-    font-family: 'Oswald', sans-serif;
     font-size: 3em;
     color: #000000;
-    margin-bottom: 20px; /* Уменьшаем отступ снизу, чтобы изображение было ближе */
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* НОВЫЕ СТИЛИ ДЛЯ ИЗОБРАЖЕНИЯ ПОД ЗАГОЛОВКОМ */
+/* Стили для изображения под заголовком */
 .invitation-image-wrapper {
     width: 100%;
-    max-width: 600px; /* Ограничиваем максимальную ширину изображения */
-    margin: 0 auto 40px auto; /* Центрируем и добавляем отступ снизу */
-    border-radius: 15px; /* Скругление углов */
-    overflow: hidden; /* Скрываем все, что выходит за рамки скругления */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Красивая тень */
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .invitation-image-wrapper img {
     width: 100%;
     height: auto;
-    display: block; /* Убираем лишние отступы под изображением */
-    object-fit: cover; /* Гарантируем, что изображение покроет всю область без искажений */
-    transform: scale(1); /* Начальное состояние для анимации масштаба */
-    transition: transform 0.3s ease-in-out; /* Плавный переход при наведении */
+    display: block;
+    object-fit: cover;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .invitation-image-wrapper img:hover {
-    transform: scale(1.03); /* Увеличение при наведении */
+    transform: scale(1.03);
 }
 
 /* АНИМАЦИЯ ДЛЯ ИЗОБРАЖЕНИЯ */
 .animated-image {
-    opacity: 0; /* Начинаем с невидимого */
-    transform: translateY(20px); /* Начинаем немного ниже */
-    animation: fadeInSlideUp 1s ease-out forwards; /* Применяем анимацию */
-    animation-delay: 0.5s; /* Задержка перед началом анимации */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.5s;
 }
 
 @keyframes fadeInSlideUp {
@@ -219,9 +220,9 @@ body {
     }
 }
 
-
 /* Стили для курсивного текста внутри заголовка (если есть) */
 .section-title .cursive-text {
+    font-family: 'Oswald', sans-serif;
     font-style: italic;
     color: #000000;
 }
@@ -230,42 +231,98 @@ body {
 .story-content {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     gap: 40px;
     text-align: left;
     justify-content: center;
 }
 
-/* Текстовый блок в секции истории */
+/* Стили для текстового блока */
 .story-text {
     flex: 2;
     min-width: 300px;
-    padding-right: 20px;
+    max-width: 700px;
+    padding: 30px;
     box-sizing: border-box;
     color: #000000;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1.8;
 }
 
 /* Параграфы в текстовом блоке истории */
 .story-text p {
-
     font-size: 1.1em;
     margin-bottom: 15px;
     color: #000000;
 }
 
+/* НОВЫЕ СТИЛИ ДЛЯ ВСТАВКИ "Ваша присутність..." */
+.highlight-text-block {
+    background-color: #ffe0b2; /* Светло-оранжевый/персиковый фон */
+    padding: 20px 30px; /* Внутренние отступы */
+    border-radius: 10px; /* Скругление углов */
+    margin: 30px auto; /* Отступы сверху и снизу, центрирование */
+    max-width: 500px; /* Ограничиваем ширину для лучшей читаемости */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Нежная тень */
+    text-align: center; /* Центрируем текст внутри блока */
+    font-family: 'Oswald', sans-serif; /* Используем Oswald */
+    color: #333333; /* Темный цвет текста */
+    opacity: 0; /* Начальная невидимость для анимации */
+    transform: scale(0.9); /* Начальный масштаб для анимации */
+    animation: scaleInFadeIn 1s ease-out forwards; /* Применяем анимацию */
+    animation-delay: 1.5s; /* Задержка после появления фото */
+}
+
+.highlight-text-block .highlight-title {
+    font-size: 1.6em; /* Крупный заголовок */
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #de9c00; /* Цвет акцента, как на главной странице */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.highlight-text-block .highlight-subtitle {
+    font-size: 1.1em; /* Меньший подзаголовок */
+    font-style: italic;
+    color: #555555;
+}
+
+/* Анимация для нового блока */
+@keyframes scaleInFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
 /* Заголовок "Проведемо чудовий час разом на весіллі !" (h3) */
 .story-text h3 {
+    font-family: 'Oswald', sans-serif;
     font-size: 1.8em;
     color: #000000;
-    margin-top: 30px;
+    margin-top: 30px; /* Увеличиваем верхний отступ, чтобы отделить от нового блока */
     text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.3;
 }
 
 /* Добавлен стиль для h4 */
 .story-text h4 {
+    font-family: 'Oswald', sans-serif;
     font-size: 1.2em;
     color: #000000;
     margin-top: 15px;
+    font-weight: normal;
 }
 
 /* Блок изображения в секции истории (если вы его оставили в HTML) */
@@ -321,6 +378,9 @@ footer {
     .section-title {
         font-size: 2.5em;
     }
+    .story-text {
+        padding: 25px;
+    }
 }
 
 /* Медиа-запрос для экранов шириной до 768px (планшеты в ландшафтном режиме, маленькие ноутбуки) */
@@ -357,10 +417,33 @@ footer {
         flex-direction: column;
         gap: 20px;
     }
-    .story-text, .story-image {
-        padding: 0;
-        width: 100%;
-        text-align: center;
+    .story-text {
+        padding: 20px;
+        width: 90%;
+        max-width: none;
+        margin: 0 auto;
+        font-size: 1em;
+    }
+    .story-text h3 {
+        font-size: 1.6em;
+    }
+    .story-text h4 {
+        font-size: 1.1em;
+    }
+    .invitation-image-wrapper {
+        margin-bottom: 30px;
+    }
+    /* Адаптация нового блока для мобильных */
+    .highlight-text-block {
+        padding: 15px 20px;
+        margin: 20px auto;
+        font-size: 0.9em;
+    }
+    .highlight-text-block .highlight-title {
+        font-size: 1.4em;
+    }
+    .highlight-text-block .highlight-subtitle {
+        font-size: 1em;
     }
 }
 
@@ -393,13 +476,33 @@ footer {
         letter-spacing: 1px;
     }
     .section-title {
-        font-size: 1.8em;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    }
+    .story-text {
+        padding: 15px;
+        font-size: 0.95em;
     }
     .story-text h3 {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
     .story-text h4 {
         font-size: 1em;
+    }
+    .invitation-image-wrapper {
+        margin-bottom: 25px;
+    }
+    /* Адаптация нового блока для маленьких телефонов */
+    .highlight-text-block {
+        padding: 12px 18px;
+        margin: 15px auto;
+        font-size: 0.85em;
+    }
+    .highlight-text-block .highlight-title {
+        font-size: 1.2em;
+    }
+    .highlight-text-block .highlight-subtitle {
+        font-size: 0.9em;
     }
 }
 
@@ -433,14 +536,31 @@ footer {
     }
     .section-title {
         font-size: 1.4em;
+        margin-bottom: 10px;
     }
-    .story-text p {
+    .story-text {
+        padding: 10px;
         font-size: 0.9em;
     }
     .story-text h3 {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
     .story-text h4 {
-        font-size: 0.9em;
+        font-size: 0.8em;
+    }
+    .invitation-image-wrapper {
+        margin-bottom: 20px;
+    }
+    /* Адаптация нового блока для самых маленьких телефонов */
+    .highlight-text-block {
+        padding: 10px 15px;
+        margin: 10px auto;
+        font-size: 0.8em;
+    }
+    .highlight-text-block .highlight-title {
+        font-size: 1.1em;
+    }
+    .highlight-text-block .highlight-subtitle {
+        font-size: 0.8em;
     }
 }
