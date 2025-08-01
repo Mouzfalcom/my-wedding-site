@@ -24,7 +24,7 @@ body {
     justify-content: center;
     align-items: center;
     color: #de9c00;
-    background-image: url("IMG_3657.CR2"); /* Обновленный путь к изображению */
+    background-image: url("IMG_3657.CR2"); /* Это фон титульной страницы */
     background-attachment: local;
     background-size: cover;
     background-position: 15% 25%;
@@ -138,9 +138,7 @@ body {
 /* Стили для секции "Наша История" */
 .our-story-section {
     padding: 60px 0;
-    background-color: #d4cece;
-    /* УБИРАЕМ ИМЕНА С ФОНА ВТОРОЙ СТРАНИЦЫ: */
-    /* Убедитесь, что 'photo_5213043914917934867_y.jpg' - это изображение БЕЗ имен */
+    background-color: #d4cece; /* Основной цвет фона секции */
     background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg");
     background-attachment: fixed;
     background-size: cover;
@@ -151,7 +149,7 @@ body {
     overflow: hidden;
 }
 
-/* Псевдоэлемент для наложения полупрозрачного слоя поверх фонового изображения в .our-story-section */
+/* Псевдоэлемент для наложения полупрозрачного слоя поверх фона в .our-story-section */
 .our-story-section::before {
     content: '';
     position: absolute;
@@ -169,24 +167,61 @@ body {
     z-index: 1;
 }
 
+/* НОВЫЙ БЛОК: ОБЩАЯ РАМКА ДЛЯ ЗАГОЛОВКА И ФОТО */
+.invitation-block-wrapper {
+    max-width: 700px; /* Ограничиваем ширину всего блока */
+    margin: 0px auto 40px auto; /* Отступы и центрирование */
+    padding: 30px; /* Внутренние отступы для содержимого внутри рамки */
+    background-color: rgba(255, 255, 255, 0.95); /* Светлый фон для содержимого внутри рамки */
+    border: 5px solid #de9c00; /* Золотая рамка */
+    border-radius: 20px; /* Скругление углов для всей рамки */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Тень для выделения */
+    box-sizing: border-box; /* Включаем padding и border в общую ширину/высоту */
+    text-align: center; /* Центрируем содержимое внутри */
+    opacity: 0; /* Начальное состояние для анимации */
+    transform: translateY(-30px); /* Начальное смещение для анимации */
+    animation: fadeInSlideDownBlock 1.2s ease-out forwards; /* Анимация появления */
+    animation-delay: 0.5s; /* Задержка перед появлением блока */
+}
+
+@keyframes fadeInSlideDownBlock {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 /* Стили для заголовков секций (например, "ЗАПРОШЕННЯ") */
 .section-title {
+    font-family:'Pacifico', cursive;
     font-size: 3em;
     color: #000000;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Увеличил отступ под заголовком */
     text-transform: uppercase;
     letter-spacing: 1px;
+    /* УДАЛЕНЫ СТИЛИ РАМКИ И АНИМАЦИИ ОТСЮДА */
+    /* Они теперь применяются к .invitation-block-wrapper */
 }
 
 /* Стили для изображения под заголовком */
 .invitation-image-wrapper {
     width: 100%;
     max-width: 600px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto; /* Убрал нижний отступ, так как он теперь у invitation-block-wrapper */
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    /* УДАЛЕНЫ СТИЛИ РАМКИ И АНИМАЦИИ ОТСЮДА */
+    /* Они теперь применяются к .invitation-block-wrapper */
 }
+
+/* Убрана анимация для рамки фото (::after) из invitation-image-wrapper */
+/* Вместо этого будет анимироваться вся рамка .invitation-block-wrapper */
 
 .invitation-image-wrapper img {
     width: 100%;
@@ -201,12 +236,12 @@ body {
     transform: scale(1.03);
 }
 
-/* АНИМАЦИЯ ДЛЯ ИЗОБРАЖЕНИЯ */
+/* АНИМАЦИЯ ДЛЯ ИЗОБРАЖЕНИЯ (внутри wrapper) */
 .animated-image {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInSlideUp 1s ease-out forwards;
-    animation-delay: 0.5s;
+    animation-delay: 0.5s; /* Задержка после появления основного блока */
 }
 
 @keyframes fadeInSlideUp {
@@ -220,9 +255,10 @@ body {
     }
 }
 
+
 /* Стили для курсивного текста внутри заголовка (если есть) */
 .section-title .cursive-text {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Pacifico', cursive;
     font-style: italic;
     color: #000000;
 }
@@ -255,12 +291,13 @@ body {
 
 /* Параграфы в текстовом блоке истории */
 .story-text p {
+    font-family: 'Oswald', sans-serif;
     font-size: 1.1em;
     margin-bottom: 15px;
     color: #000000;
 }
 
-/* НОВЫЕ СТИЛИ ДЛЯ ВСТАВКИ "Ваша присутність..." */
+/* Стили для вставки "Ваша присутність..." */
 .highlight-text-block {
     background-color: #ffe0b2; /* Светло-оранжевый/персиковый фон */
     padding: 20px 30px; /* Внутренние отступы */
@@ -375,6 +412,9 @@ footer {
         font-size: 1.2em;
         margin-bottom: 20px;
     }
+    .invitation-block-wrapper {
+        padding: 25px;
+    }
     .section-title {
         font-size: 2.5em;
     }
@@ -410,6 +450,9 @@ footer {
         font-size: 1.2em;
         margin-bottom: 15px;
     }
+    .invitation-block-wrapper {
+        padding: 20px;
+    }
     .section-title {
         font-size: 2.2em;
     }
@@ -431,7 +474,7 @@ footer {
         font-size: 1.1em;
     }
     .invitation-image-wrapper {
-        margin-bottom: 30px;
+        margin-bottom: 0; /* Убираем нижний отступ */
     }
     /* Адаптация нового блока для мобильных */
     .highlight-text-block {
@@ -475,6 +518,9 @@ footer {
         margin-bottom: 10px;
         letter-spacing: 1px;
     }
+    .invitation-block-wrapper {
+        padding: 15px;
+    }
     .section-title {
     font-size: 1.8em;
     margin-bottom: 15px;
@@ -490,7 +536,7 @@ footer {
         font-size: 1em;
     }
     .invitation-image-wrapper {
-        margin-bottom: 25px;
+        margin-bottom: 0; /* Убираем нижний отступ */
     }
     /* Адаптация нового блока для маленьких телефонов */
     .highlight-text-block {
@@ -534,6 +580,9 @@ footer {
         margin-bottom: 5px;
         letter-spacing: 0.5px;
     }
+    .invitation-block-wrapper {
+        padding: 10px;
+    }
     .section-title {
         font-size: 1.4em;
         margin-bottom: 10px;
@@ -549,7 +598,7 @@ footer {
         font-size: 0.8em;
     }
     .invitation-image-wrapper {
-        margin-bottom: 20px;
+        margin-bottom: 0; /* Убираем нижний отступ */
     }
     /* Адаптация нового блока для самых маленьких телефонов */
     .highlight-text-block {
