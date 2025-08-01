@@ -41,7 +41,6 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(147, 139, 139, 0.25);
     z-index: 1;
 }
 
@@ -150,7 +149,7 @@ body {
 }
 
 /* Псевдоэлемент для наложения полупрозрачного слоя поверх фона в .our-story-section */
-.our-story-section::before {
+/*.our-story-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -291,7 +290,7 @@ body {
 
 /* Параграфы в текстовом блоке истории */
 .story-text p {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Pacifico', cursive;
     font-size: 1.1em;
     margin-bottom: 15px;
     color: #000000;
@@ -299,6 +298,7 @@ body {
 
 /* Стили для вставки "Ваша присутність..." */
 .highlight-text-block {
+    font-family: 'Oswald', sans-serif; /* Используем Oswald */
     background-color: #ffe0b2; /* Светло-оранжевый/персиковый фон */
     padding: 20px 30px; /* Внутренние отступы */
     border-radius: 10px; /* Скругление углов */
@@ -306,7 +306,6 @@ body {
     max-width: 500px; /* Ограничиваем ширину для лучшей читаемости */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Нежная тень */
     text-align: center; /* Центрируем текст внутри блока */
-    font-family: 'Oswald', sans-serif; /* Используем Oswald */
     color: #333333; /* Темный цвет текста */
     opacity: 0; /* Начальная невидимость для анимации */
     transform: scale(0.9); /* Начальный масштаб для анимации */
@@ -315,6 +314,7 @@ body {
 }
 
 .highlight-text-block .highlight-title {
+    font-family: 'Oswald', sans-serif; /* Используем Oswald */
     font-size: 1.6em; /* Крупный заголовок */
     font-weight: bold;
     margin-bottom: 10px;
@@ -324,6 +324,7 @@ body {
 }
 
 .highlight-text-block .highlight-subtitle {
+    font-family: 'Oswald', sans-serif; /* Используем Oswald */
     font-size: 1.1em; /* Меньший подзаголовок */
     font-style: italic;
     color: #555555;
