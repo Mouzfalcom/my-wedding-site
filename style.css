@@ -24,25 +24,16 @@ body {
     justify-content: center;
     align-items: center;
     color: #de9c00;
-    background-image: url("IMG_3657.CR2"); /* Это фон титульной страницы */
+    background-image: url("photo_5204105761557443087_y.jpg"); /* Это фон титульной страницы */
     background-attachment: local;
     background-size: cover;
-    background-position: 15% 25%;
+    background-position: 15% 25%; /* Возможно, потребуется точная настройка */
     background-repeat: no-repeat;
     overflow: hidden;
     text-align: center;
 }
 
 /* Псевдоэлемент для наложения полупрозрачного слоя поверх изображения */
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-}
 
 /* Содержимое секции героя (текст) */
 .hero-content {
@@ -76,11 +67,14 @@ body {
     font-size: 6em;
     color: #de9c00;
     position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-100%);
+    top: 10%; /* Поднято ещё выше для десктопов */
+    left: 50%;
+    transform: translateX(-150%); /* Смещаем влево от центра */
     margin: 0;
     white-space: nowrap;
+    opacity: 0;
+    animation: fadeInName 1s ease-out forwards;
+    animation-delay: 0s;
 }
 
 /* Стили для символа "&" (h2) */
@@ -89,11 +83,14 @@ body {
     font-size: 5em;
     color: #de9c00;
     position: absolute;
-    top: 50%;
+    top: 15%; /* Немного ниже Ярика, для выравнивания */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /* Точно по центру */
     margin: 0;
     line-height: 1;
+    opacity: 0;
+    animation: fadeInName 1s ease-out forwards;
+    animation-delay: 0.3s;
 }
 
 /* Стили для имени "Каріна" (h3) */
@@ -102,12 +99,22 @@ body {
     font-size: 6em;
     color: #de9c00;
     position: absolute;
-    top: 50%;
-    right: 5%;
-    transform: translateY(0%);
+    top: 10%; /* Поднято ещё выше, как у Ярика */
+    left: 50%;
+    transform: translateX(50%); /* Смещаем вправо от центра */
     margin: 0;
     white-space: nowrap;
+    opacity: 0;
+    animation: fadeInName 1s ease-out forwards;
+    animation-delay: 0.6s;
 }
+
+/* Анимация для имен (простое появление) */
+@keyframes fadeInName {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 
 /* Стили для даты свадьбы */
 .hero-content .wedding-date {
@@ -115,13 +122,16 @@ body {
     font-size: 1.5em;
     color: #de9c00;
     letter-spacing: 3px;
-    margin-top: auto;
+    margin-top: auto; /* Сохраняем, чтобы оставалось внизу */
     margin-bottom: 20px;
     font-weight: 900;
     white-space: nowrap;
     position: relative;
     left: auto;
     transform: none;
+    opacity: 0;
+    animation: fadeInName 1s ease-out forwards;
+    animation-delay: 1s;
 }
 
 /* Стили для полосы-разделителя */
@@ -137,7 +147,7 @@ body {
 /* Стили для секции "Наша История" */
 .our-story-section {
     padding: 60px 0;
-    background-color: #d4cece; /* Основной цвет фона секции */
+    background-color: #d4cece;
     background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg");
     background-attachment: fixed;
     background-size: cover;
@@ -149,14 +159,14 @@ body {
 }
 
 /* Псевдоэлемент для наложения полупрозрачного слоя поверх фона в .our-story-section */
-/*.our-story-section::before {
+.our-story-section::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(180, 176, 176, 0.3);
+    background-color: rgba(180, 176, 176, 0.1);
     z-index: 0;
 }
 
@@ -168,30 +178,24 @@ body {
 
 /* НОВЫЙ БЛОК: ОБЩАЯ РАМКА ДЛЯ ЗАГОЛОВКА И ФОТО */
 .invitation-block-wrapper {
-    max-width: 700px; /* Ограничиваем ширину всего блока */
-    margin: 0px auto 40px auto; /* Отступы и центрирование */
-    padding: 30px; /* Внутренние отступы для содержимого внутри рамки */
-    background-color: rgba(255, 255, 255, 0.95); /* Светлый фон для содержимого внутри рамки */
-    border: 5px solid #de9c00; /* Золотая рамка */
-    border-radius: 20px; /* Скругление углов для всей рамки */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Тень для выделения */
-    box-sizing: border-box; /* Включаем padding и border в общую ширину/высоту */
-    text-align: center; /* Центрируем содержимое внутри */
-    opacity: 0; /* Начальное состояние для анимации */
-    transform: translateY(-30px); /* Начальное смещение для анимации */
-    animation: fadeInSlideDownBlock 1.2s ease-out forwards; /* Анимация появления */
-    animation-delay: 0.5s; /* Задержка перед появлением блока */
+    max-width: 700px;
+    margin: 0px auto 40px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 5px solid #de9c00;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-@keyframes fadeInSlideDownBlock {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Класс, который добавляется JavaScript'ом, когда элемент виден */
+.invitation-block-wrapper.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
@@ -200,27 +204,20 @@ body {
     font-family:'Pacifico', cursive;
     font-size: 3em;
     color: #000000;
-    margin-bottom: 25px; /* Увеличил отступ под заголовком */
+    margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    /* УДАЛЕНЫ СТИЛИ РАМКИ И АНИМАЦИИ ОТСЮДА */
-    /* Они теперь применяются к .invitation-block-wrapper */
 }
 
 /* Стили для изображения под заголовком */
 .invitation-image-wrapper {
     width: 100%;
     max-width: 600px;
-    margin: 0 auto; /* Убрал нижний отступ, так как он теперь у invitation-block-wrapper */
+    margin: 0 auto;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    /* УДАЛЕНЫ СТИЛИ РАМКИ И АНИМАЦИИ ОТСЮДА */
-    /* Они теперь применяются к .invitation-block-wrapper */
 }
-
-/* Убрана анимация для рамки фото (::after) из invitation-image-wrapper */
-/* Вместо этого будет анимироваться вся рамка .invitation-block-wrapper */
 
 .invitation-image-wrapper img {
     width: 100%;
@@ -239,19 +236,13 @@ body {
 .animated-image {
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInSlideUp 1s ease-out forwards;
-    animation-delay: 0.5s; /* Задержка после появления основного блока */
+    transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s;
 }
 
-@keyframes fadeInSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Класс, который добавляется JavaScript'ом к родительскому элементу */
+.invitation-block-wrapper.is-visible .animated-image {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
@@ -286,7 +277,17 @@ body {
     text-align: center;
     margin: 0 auto;
     line-height: 1.8;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+
+/* Класс, который добавляется JavaScript'ом */
+.story-text.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 /* Параграфы в текстовом блоке истории */
 .story-text p {
@@ -298,48 +299,41 @@ body {
 
 /* Стили для вставки "Ваша присутність..." */
 .highlight-text-block {
-    font-family: 'Oswald', sans-serif; /* Используем Oswald */
-    background-color: #ffe0b2; /* Светло-оранжевый/персиковый фон */
-    padding: 20px 30px; /* Внутренние отступы */
-    border-radius: 10px; /* Скругление углов */
-    margin: 30px auto; /* Отступы сверху и снизу, центрирование */
-    max-width: 500px; /* Ограничиваем ширину для лучшей читаемости */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Нежная тень */
-    text-align: center; /* Центрируем текст внутри блока */
-    color: #333333; /* Темный цвет текста */
-    opacity: 0; /* Начальная невидимость для анимации */
-    transform: scale(0.9); /* Начальный масштаб для анимации */
-    animation: scaleInFadeIn 1s ease-out forwards; /* Применяем анимацию */
-    animation-delay: 1.5s; /* Задержка после появления фото */
+    font-family: 'Oswald', sans-serif;
+    background-color: #ffe0b2;
+    padding: 20px 30px;
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 500px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    color: #333333;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s;
+}
+
+/* Класс, который добавляется JavaScript'ом к родительскому элементу (story-text) */
+.story-text.is-visible .highlight-text-block {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .highlight-text-block .highlight-title {
-    font-family: 'Oswald', sans-serif; /* Используем Oswald */
-    font-size: 1.6em; /* Крупный заголовок */
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.6em;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #de9c00; /* Цвет акцента, как на главной странице */
+    color: #de9c00;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .highlight-text-block .highlight-subtitle {
-    font-family: 'Oswald', sans-serif; /* Используем Oswald */
-    font-size: 1.1em; /* Меньший подзаголовок */
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1em;
     font-style: italic;
     color: #555555;
-}
-
-/* Анимация для нового блока */
-@keyframes scaleInFadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
 }
 
 
@@ -348,10 +342,19 @@ body {
     font-family: 'Oswald', sans-serif;
     font-size: 1.8em;
     color: #000000;
-    margin-top: 30px; /* Увеличиваем верхний отступ, чтобы отделить от нового блока */
+    margin-top: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.3;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out 0.6s, transform 0.8s ease-out 0.6s;
+}
+
+/* Класс, который добавляется JavaScript'ом к родительскому элементу (story-text) */
+.story-text.is-visible h3 {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Добавлен стиль для h4 */
@@ -361,10 +364,18 @@ body {
     color: #000000;
     margin-top: 15px;
     font-weight: normal;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out 0.9s, transform 0.8s ease-out 0.9s;
+}
+
+/* Класс, который добавляется JavaScript'ом к родительскому элементу (story-text) */
+.story-text.is-visible h4 {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Блок изображения в секции истории (если вы его оставили в HTML) */
-/* Если вы удалили старый .story-image из HTML, этот блок CSS не нужен */
 .story-image {
     flex: 1;
     min-width: 250px;
@@ -397,17 +408,17 @@ footer {
 @media (max-width: 1280px) {
     .hero-content .name-yaroslav {
         font-size: 5em;
-        left: 3%;
-        transform: translateY(-100%);
+        top: 10%;
+        transform: translateX(-150%);
     }
     .hero-content .ampersand {
         font-size: 4.5em;
-        transform: translate(-50%, -50%);
+        top: 15%;
     }
     .hero-content .name-karina {
         font-size: 5em;
-        right: 3%;
-        transform: translateY(0%);
+        top: 10%;
+        transform: translateX(50%);
     }
     .hero-content .wedding-date {
         font-size: 1.2em;
@@ -430,22 +441,22 @@ footer {
         height: 85vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 6.5vw;
-        top: 45%;
-        left: 1%;
-        transform: translateY(-100%);
+        font-size: 10vw;
+        top: 0%;
+        left: 50%;
+        transform: translateX(-120%); /* Смещаем влево, чтобы вместилось */
     }
     .hero-content .ampersand {
-        font-size: 8.5vw;
-        top: 50%;
+        font-size: 8vw;
+        top: 16%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .hero-content .name-karina {
-        font-size: 6.5vw;
-        top: 55%;
-        right: 1%;
-        transform: translateY(0%);
+        font-size: 10vw;
+        top: 17%;
+        left: 50%;
+        transform: translateX(27%); /* Смещаем вправо, чтобы вместилось */
     }
     .hero-content .wedding-date {
         font-size: 1.2em;
@@ -475,7 +486,7 @@ footer {
         font-size: 1.1em;
     }
     .invitation-image-wrapper {
-        margin-bottom: 0; /* Убираем нижний отступ */
+        margin-bottom: 0;
     }
     /* Адаптация нового блока для мобильных */
     .highlight-text-block {
@@ -497,22 +508,22 @@ footer {
         height: 90vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 15vw;
-        top: 40%;
-        left: 2%;
-        transform: translateY(-100%);
+        font-size: 11vw;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-118%); /* Ещё ближе к центру */
     }
     .hero-content .ampersand {
-        font-size: 14vw;
-        top: 50%;
+        font-size: 9vw;
+        top: 15%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-36%); /* Остается по центру */
     }
     .hero-content .name-karina {
-        font-size: 15vw;
-        top: 60%;
-        right: 3%;
-        transform: translateY(0%);
+        font-size: 11vw;
+        top: 15%;
+        left: 50%;
+        transform: translateX(35%); /* Ещё ближе к центру */
     }
     .hero-content .wedding-date {
         font-size: 1.1em;
@@ -537,7 +548,7 @@ footer {
         font-size: 1em;
     }
     .invitation-image-wrapper {
-        margin-bottom: 0; /* Убираем нижний отступ */
+        margin-bottom: 0;
     }
     /* Адаптация нового блока для маленьких телефонов */
     .highlight-text-block {
@@ -559,25 +570,25 @@ footer {
         height: 95vh;
     }
     .hero-content .name-yaroslav {
-        font-size: 14vw;
-        top: 40%;
-        left: 2%;
-        transform: translateY(-100%);
+       font-size: 10vw;
+        top: 3%;
+        left: 50%;
+        transform: translateX(-129%);/* Скорректировано */
     }
     .hero-content .ampersand {
-        font-size: 13vw;
-        top: 50%;
+        font-size: 8vw;
+        top: 12%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-36%, 7%);
     }
     .hero-content .name-karina {
-        font-size: 14vw;
-        top: 60%;
-        right: 3%;
-        transform: translateY(0%);
+        font-size: 10vw;
+        top: 16%;
+        left: 50%;
+        transform: translateX(52%); /* Скорректировано */
     }
     .hero-content .wedding-date {
-        font-size: 1.1em;
+        font-size: 1em; /* Еще немного уменьшено */
         margin-bottom: 5px;
         letter-spacing: 0.5px;
     }
@@ -599,7 +610,7 @@ footer {
         font-size: 0.8em;
     }
     .invitation-image-wrapper {
-        margin-bottom: 0; /* Убираем нижний отступ */
+        margin-bottom: 0;
     }
     /* Адаптация нового блока для самых маленьких телефонов */
     .highlight-text-block {

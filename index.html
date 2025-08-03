@@ -55,5 +55,37 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Элементы, которые будут анимироваться по скроллу
+            const animatedElements = document.querySelectorAll('.invitation-block-wrapper, .story-text');
+
+            // Функция для проверки видимости элемента
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                // Элемент виден, если его верхняя граница ниже высоты окна
+                // и его нижняя граница выше 0 (т.е. он не полностью выше или ниже viewport)
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 && // 80% от высоты окна
+                    rect.bottom >= 0
+                );
+            }
+
+            // Функция для добавления класса 'is-visible'
+            function handleScrollAnimation() {
+                animatedElements.forEach(function(el) {
+                    if (isElementInViewport(el)) {
+                        el.classList.add('is-visible');
+                    }
+                });
+            }
+
+            // Вызываем функцию при загрузке страницы и при скролле
+            window.addEventListener('scroll', handleScrollAnimation);
+            window.addEventListener('resize', handleScrollAnimation); // На случай изменения размера окна
+            handleScrollAnimation(); // Запускаем один раз при загрузке, чтобы анимировать элементы, которые уже в видимой области
+        });
+    </script>
+
 </body>
 </html>
