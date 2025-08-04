@@ -1,12 +1,17 @@
-/* Общие стили для всего тела страницы */
+html, body {
+    height: 100%; /* Убедитесь, что они занимают всю высоту viewport */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Предотвращает горизонтальную прокрутку */
+}
+
 body {
     font-family: 'Pacifico', cursive;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    color: #ffffff;
-    background-color: #f4f4f4;
-    overflow-x: hidden; /* Предотвращает горизонтальную прокрутку */
+    color: #ffffff; /* Цвет текста, который вы используете */
+    background-color: #f4f4f4; /* Убедитесь, что это цвет, который вы хотите видеть, если фон просвечивает */
+    /* Или, если вы хотите, чтобы фон был тем же, что и у футера: */
+    /* background-color: #2e2e2e; */
 }
 
 /* НОВЫЕ СТИЛИ ДЛЯ ЭКРАНА-КОНВЕРТА */
@@ -49,7 +54,7 @@ body {
 }
 
 .click-message {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Pacifico', cursive;
     font-size: 2.2em;
     color: #de9c00;
     text-transform: none;
@@ -84,11 +89,13 @@ body {
     to { opacity: 1; }
 }
 
-/* Скрываем основной контент по умолчанию */
 .main-content {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1s ease-out, visibility 1s ease-out; /* Плавное появление */
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+    min-height: 100vh; /* Убедимся, что основной контент занимает как минимум всю высоту viewport */
+    display: flex;
+    flex-direction: column; /* Если вы хотите, чтобы футер был прижат к низу */
 }
 
 .main-content.show {
@@ -111,9 +118,9 @@ body {
     }
 
     .click-message {
-        font-size: 8vw;
-        top: 22%;
-        left: -12%;
+       font-size: 7vw;
+        top: 23%;
+        left: -13%;
         transform: translateX(31%);
     }
 }
@@ -129,9 +136,9 @@ body {
     }
 
     .click-message {
-        font-size: 8vw;
-        top: 22%;
-        left: -12%;
+        font-size: 7vw;
+        top: 23%;
+        left: -13%;
         transform: translateX(31%);
     }
 }
@@ -140,16 +147,16 @@ body {
 @media (max-width: 340px) {
      .envelope-icon {
         width: 200vw;
-        max-width: 381px; 
+        max-width: 322px;
         top: 22%;
-        left: -24%;/* Конверт занимает 75% ширины экрана */
+        left: -24%;
         transform: translateX(4%);
     }
 
     .click-message {
-        font-size: 8vw;
-        top: 22%;
-        left: -12%;
+        font-size: 7vw;
+        top: 23%;
+        left: -19%;
         transform: translateX(31%);
     }
 }
@@ -350,12 +357,12 @@ body {
 
 /* Стили для заголовков секций (например, "ЗАПРОШЕННЯ") */
 .section-title {
-    font-family:'Pacifico', cursive;
+    font-family: 'Oswald', sans-serif;
     font-size: 2em;
     color: #000000;
     margin-bottom: 25px;
     text-transform: uppercase;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
 }
 
 /* Стили для изображения под заголовком */
@@ -397,13 +404,14 @@ body {
 
 /* Стили для курсивного текста внутри заголовка (если есть) */
 .section-title .cursive-text {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Oswald', sans-serif;
     font-style: italic;
     color: #000000;
 }
 
 /* Контейнер для текста и изображения в секции истории */
 .story-content {
+    font-family: 'Oswald', sans-serif;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -414,6 +422,7 @@ body {
 
 /* Стили для текстового блока */
 .story-text {
+    font-family: 'Oswald', sans-serif;
     flex: 2;
     min-width: 300px;
     max-width: 700px;
@@ -440,7 +449,7 @@ body {
 
 /* Параграфы в текстовом блоке истории */
 .story-text p {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Oswald', sans-serif;
     font-size: 1.1em;
     margin-bottom: 15px;
     color: #000000;
@@ -493,7 +502,7 @@ body {
 
 /* Добавлен стиль для h4 */
 .story-text h4 {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Oswald', sans-serif;
     font-size: 6em;
     color: #000000;
     margin-top: 15px;
@@ -530,8 +539,12 @@ footer {
     color: #fffefe;
     text-align: center;
     padding: 20px 0;
-    margin-top: 40px;
+    margin-top: 40px; /* Проверьте этот margin-top, возможно, он слишком большой */
     font-size: 0.9em;
+    /* Убедитесь, что нет нежелательных отступов снизу */
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 /* Стили для полосы-разделителя */
 .section-separator {
@@ -545,7 +558,7 @@ footer {
 
 /* Заголовок "Проведемо чудовий час разом на весіллі !" (h3) */
 .section-title h3{
-    font-family: 'Pacifico', cursive;
+    font-family: 'Oswald', sans-serif;
     font-size: 8em;
     color: #000000;
     margin-top: 30px;
