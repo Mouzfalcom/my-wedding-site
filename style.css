@@ -53,8 +53,7 @@ body {
 .hero-content h1,
 .hero-content h2,
 .hero-content h3,
-.hero-content p,
-.section-title h3 {
+.hero-content p {
     text-shadow:
         2px 2px 4px rgba(0, 0, 0, 0.7),
         -2px -2px 4px rgba(0, 0, 0, 0.7),
