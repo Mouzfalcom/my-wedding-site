@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ярослав & Каріна - Запрошення на весілля</title>
-    <link rel="stylesheet" href="weddingbody.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="weddingbody.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
@@ -49,43 +48,38 @@
         </div>
     </section>
 
+    <section class="calendar-section">
+        <div class="container">
+           
+            <div class="calendar-wrapper">
+                <div class="calendar-header">
+                    <span class="month-name">Грудень</span>
+                    <span class="year-name">2025</span>
+                </div>
+                <div class="calendar-grid">
+                    <div class="day-name">Пн</div>
+                    <div class="day-name">Вт</div>
+                    <div class="day-name">Ср</div>
+                    <div class="day-name">Чт</div>
+                    <div class="day-name">Пт</div>
+                    <div class="day-name">Сб</div>
+                    <div class="day-name">Нд</div>
+                </div>
+            </div>
+            <div class="rsvp-block">
+                <p>Підтвердити присутність</p>
+                <a href="#" class="rsvp-button">RSVP</a>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2025 Ярослав & Каріна. Усі права захищені.</p>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Элементы, которые будут анимироваться по скроллу
-            const animatedElements = document.querySelectorAll('.invitation-block-wrapper, .story-text');
-
-            // Функция для проверки видимости элемента
-            function isElementInViewport(el) {
-                const rect = el.getBoundingClientRect();
-                // Элемент виден, если его верхняя граница ниже высоты окна
-                // и его нижняя граница выше 0 (т.е. он не полностью выше или ниже viewport)
-                return (
-                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 && // 80% от высоты окна
-                    rect.bottom >= 0
-                );
-            }
-
-            // Функция для добавления класса 'is-visible'
-            function handleScrollAnimation() {
-                animatedElements.forEach(function(el) {
-                    if (isElementInViewport(el)) {
-                        el.classList.add('is-visible');
-                    }
-                });
-            }
-
-            // Вызываем функцию при загрузке страницы и при скролле
-            window.addEventListener('scroll', handleScrollAnimation);
-            window.addEventListener('resize', handleScrollAnimation); // На случай изменения размера окна
-            handleScrollAnimation(); // Запускаем один раз при загрузке, чтобы анимировать элементы, которые уже в видимой области
-        });
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>

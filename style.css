@@ -400,6 +400,269 @@ footer {
     font-size: 0.9em;
 }
 
+/* Styles for the new Calendar Section */
+.calendar-section {
+    padding: 60px 0;
+    background-color: #f7f7f7; /* Светлый фон для контраста */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: #333333;
+    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg"); /* Используем тот же размытый фон, если хотите */
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.calendar-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.4); /* Полупрозрачное белое наложение */
+    z-index: 0;
+}
+
+.calendar-section .container {
+    position: relative;
+    z-index: 1; /* Убедимся, что контент над overlay */
+}
+
+.calendar-section .section-title {
+    font-family:'Oswald', sans-serif;
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+.calendar-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 450px; /* Ширина календаря */
+    margin: 0 auto 40px auto;
+    padding: 30px;
+    box-sizing: border-box;
+    opacity: 0; /* Начальное состояние для анимации */
+    transform: translateY(30px); /* Начальное состояние для анимации */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Анимация появления для календарной обертки */
+.calendar-wrapper.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 25px;
+    font-family: 'Pacifico', cursive;
+    color: #de9c00;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+}
+
+.calendar-header .month-name {
+    margin-right: 10px;
+}
+
+.calendar-header .year-name {
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    font-family: 'Oswald', sans-serif; /* Для чисел в календаре */
+}
+
+.calendar-grid .day-name {
+    font-weight: bold;
+    color: #de9c00;
+    font-size: 1.1em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.calendar-grid .day {
+    padding: 12px 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-grid .day:hover:not(.empty):not(.highlighted) {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.calendar-grid .empty {
+    background-color: transparent;
+    cursor: default;
+}
+
+.calendar-grid .highlighted {
+    background-color: #de9c00; /* Цвет выделенного дня */
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1); /* Анимация выделения */
+    position: relative;
+    z-index: 2;
+    animation: pulseHighlight 1.5s infinite alternate; /* Добавлена анимация пульсации */
+}
+
+/* Стилизация сердечка для выделенного дня */
+.calendar-grid .highlighted::before {
+    content: '♥'; /* Символ сердечка */
+    position: absolute;
+    top: -10px; /* Позиционируем над цифрой */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #b30000; /* Цвет сердечка, например, красный */
+    font-size: 1.5em;
+    line-height: 1;
+    z-index: 3;
+    animation: heartBeat 1s ease-in-out infinite; /* Анимация пульсации сердечка */
+}
+
+
+/* Анимация пульсации для выделенного дня */
+@keyframes pulseHighlight {
+    from { transform: scale(1); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+    to { transform: scale(1.05); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
+}
+
+/* Анимация сердечка */
+@keyframes heartBeat {
+    0% { transform: translateX(-50%) scale(1); opacity: 1; }
+    50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+
+/* Стили для блока RSVP */
+.rsvp-block {
+    margin-top: 30px;
+    opacity: 0; /* Начальное состояние для анимации */
+    transform: translateY(30px); /* Начальное состояние для анимации */
+    transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s; /* Задержка анимации */
+}
+
+/* Анимация появления для блока RSVP */
+.rsvp-block.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.rsvp-block p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3em;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.rsvp-button {
+    display: inline-block;
+    background-color: #de9c00;
+    color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.rsvp-button:hover {
+    background-color: #c48700;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================== */
+/* Адаптивный дизайн для календаря: Медиа-запросы */
+/* =========================================== */
+
+@media (max-width: 768px) {
+    .calendar-wrapper {
+        max-width: 90%;
+        padding: 20px;
+    }
+    .calendar-header {
+        font-size: 2em;
+    }
+    .calendar-grid .day {
+        font-size: 1em;
+        padding: 10px 5px;
+    }
+    .calendar-grid .day-name {
+        font-size: 1em;
+        padding-bottom: 8px;
+    }
+    .rsvp-block p {
+        font-size: 1.1em;
+    }
+    .rsvp-button {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+    .calendar-grid .highlighted::before {
+        font-size: 1.2em;
+        top: -8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-wrapper {
+        padding: 15px;
+    }
+    .calendar-header {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    .calendar-grid {
+        gap: 8px;
+    }
+    .calendar-grid .day {
+        font-size: 0.9em;
+        padding: 8px 3px;
+    }
+    .calendar-grid .day-name {
+        font-size: 0.9em;
+        padding-bottom: 6px;
+    }
+    .rsvp-block p {
+        font-size: 1em;
+    }
+    .rsvp-button {
+        padding: 8px 20px;
+        font-size: 0.9em;
+    }
+    .calendar-grid .highlighted::before {
+        font-size: 1em;
+        top: -6px;
+    }
+}
+
 /* =========================================== */
 /* Адаптивный дизайн: Медиа-запросы */
 /* =========================================== */
