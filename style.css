@@ -49,13 +49,13 @@ body {
     left: 0; /* <-- ИЗМЕНИТЬ ЭТУ СТРОКУ */
     width: 100%;
     height: 100%;
-    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg");
+    background-image: url("background.jpg");
     /* ДОБАВИТЬ: Если фон intro-overlay - это изображение,
        нужно убедиться, что оно занимает всю область. */
     background-size: cover; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ */
-    background-position: center; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ */
+    background-position: left;
     background-repeat: no-repeat; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ */
-
+    background-position: 8% 25%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,9 +172,9 @@ body {
     }
 
     .click-message {
-        font-size: 6vw;
-        top: 23%;
-        left: -13%;
+       font-size: 7vw;
+        top: 222%;
+        left: 94%;
         transform: translateX(31%);
     }
 }
@@ -191,8 +191,8 @@ body {
 
     .click-message {
         font-size: 7vw;
-        top: 23%;
-        left: -19%;
+        top: 216%;
+        left: 130%;
         transform: translateX(31%);
     }
 }
@@ -343,7 +343,7 @@ body {
 .our-story-section {
     padding: 60px 0;
     background-color: #d4cece;
-    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg");
+    background-image: url("dekorration.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -618,7 +618,7 @@ footer {
     position: relative;
     overflow: hidden;
     color: #333333;
-    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg"); /* Используем тот же размытый фон, если хотите */
+    background-image: url("dekorration.jpg"); /* Используем тот же размытый фон, если хотите */
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
