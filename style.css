@@ -811,7 +811,7 @@ footer {
         padding: 15px;
     }
     .section-title {
-    font-size: 1.8em;
+    font-size: 104%;
     margin-bottom: 15px;
     }
     .story-text {
@@ -876,8 +876,8 @@ footer {
         padding: 10px;
     }
     .section-title {
-        font-size: 1.4em;
-        margin-bottom: 10px;
+        font-size: 104%;
+        margin-bottom: 15px;
     }
     .story-text {
         padding: 10px;
