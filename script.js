@@ -1,4 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const introOverlay = document.getElementById('introOverlay');
+    const mainContent = document.getElementById('mainContent');
+
+    // Функция для скрытия intro-overlay и показа main-content
+    function revealContent() {
+        // Убедимся, что overlay существует перед добавлением класса
+        if (introOverlay) {
+            introOverlay.classList.add('fade-out'); // Запускаем анимацию исчезновения
+
+            // Ждем завершения анимации исчезновения оверлея, прежде чем показывать основной контент
+            introOverlay.addEventListener('transitionend', () => {
+                if (mainContent) {
+                    mainContent.classList.add('show'); // Показываем основной контент
+
+                    // Немедленно запускаем анимации для всех элементов, которые должны быть анимированы при показе основного контента
+                    // Это важно, так как IntersectionObserver может сработать не сразу, если элементы находятся выше скролла
+                    const elementsToAnimate = document.querySelectorAll(
+                        '.invitation-block-wrapper, .story-text, .highlight-text-block, .story-text h3, .story-text h4, .calendar-wrapper, .rsvp-block'
+                    );
+                    elementsToAnimate.forEach(element => {
+                        // Добавляем класс is-visible, если элемент находится в видимой части экрана
+                        // или если он должен появиться сразу (например, верхние блоки)
+                        // Для надежности, мы можем просто добавить класс всем,
+                        // а CSS-переходы позаботятся об анимации.
+                        // Или, если хотим более точный контроль, проверяем видимость:
+                        const rect = element.getBoundingClientRect();
+                        const isVisible = (rect.top <= window.innerHeight && rect.bottom >= 0);
+                        if (isVisible) {
+                            element.classList.add('is-visible');
+                        }
+                    });
+                }
+                introOverlay.remove(); // Удаляем intro-overlay из DOM после завершения анимации
+            }, { once: true }); // Удалить слушатель после первого срабатывания
+        }
+    }
+
+    // Слушатель клика по экрану-конверту
+    if (introOverlay) {
+        introOverlay.addEventListener('click', revealContent);
+    }
+
+
     // === Календарь ===
     const calendarGrid = document.querySelector('.calendar-grid');
     const highlightedDate = 12; // Дата, которую нужно выделить
@@ -6,18 +49,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetYear = 2025;
 
     function renderCalendar(year, month, highlightDay) {
-        // Очищаем предыдущие дни
-        const existingDays = calendarGrid.querySelectorAll('.day');
+        // Убедимся, что calendarGrid существует
+        if (!calendarGrid) return;
+
+        // Удаляем существующие дни, чтобы перерисовать календарь
+        const existingDays = calendarGrid.querySelectorAll('.day:not(.day-name)');
         existingDays.forEach(day => day.remove());
 
-        const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 = Sunday, 1 = Monday
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        // Определяем, какой день недели является первым днем месяца (0 = Вс, 1 = Пн, ...)
+        // Для первого дня недели в сетке (Пн) нужно откорректировать смещение
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        let startDayOffset = (firstDayOfMonth === 0) ? 6 : firstDayOfMonth - 1; // Если Воскресенье (0), то смещение 6 (перед Пн)
 
-        // Смещение для начала понедельника (если воскресенье - 0, делаем его 7)
-        let startDay = (firstDayOfMonth === 0) ? 6 : firstDayOfMonth - 1;
+        const daysInMonth = new Date(year, month + 1, 0).getDate(); // Получаем количество дней в месяце
 
-        // Добавляем пустые ячейки для дней перед началом месяца
-        for (let i = 0; i < startDay; i++) {
+        // Добавляем пустые ячейки для дней до начала месяца
+        for (let i = 0; i < startDayOffset; i++) {
             const emptyDay = document.createElement('div');
             emptyDay.classList.add('day', 'empty');
             calendarGrid.appendChild(emptyDay);
@@ -40,39 +87,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // === Анимация при прокрутке ===
+    // Observer для элементов, которые анимируются при прокрутке
+    const animateOnScrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Прекращаем наблюдение за этим элементом после анимации
+            }
+        });
+    }, {
+        threshold: 0.1 // Когда 10% элемента видно
+    });
+
+    // Наблюдаем за элементами, которые должны анимироваться при прокрутке
     const elementsToAnimate = document.querySelectorAll(
         '.invitation-block-wrapper, .story-text, .highlight-text-block, .story-text h3, .story-text h4, .calendar-wrapper, .rsvp-block'
     );
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (entry.target.classList.contains('highlight-text-block') ||
-                    entry.target.tagName === 'H3' ||
-                    entry.target.tagName === 'H4') {
-                    // Для этих элементов класс is-visible добавляется к их родительскому .story-text
-                    // Поэтому здесь мы проверяем, имеет ли родитель is-visible.
-                    // Если вы хотите, чтобы они анимировались независимо, им нужно добавить класс
-                    // 'is-visible' напрямую или изменить логику.
-                    // Поскольку у нас есть родительские классы, мы можем просто добавить is-visible
-                    // к самому элементу, если он в списке elementsToAnimate.
-                    entry.target.classList.add('is-visible');
-                } else {
-                    entry.target.classList.add('is-visible');
-                }
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1 // Элемент считается видимым, когда 10% его видна
-    });
-
+    // Запускаем наблюдение для каждого элемента
     elementsToAnimate.forEach(element => {
-        observer.observe(element);
+        animateOnScrollObserver.observe(element);
     });
 
-    // Обработка случая с highlight-text-block, h3, h4, если они внутри story-text
-    // и должны анимироваться после story-text.
-    // Если вы хотите последовательную анимацию, убедитесь, что delay в CSS соответствует.
-    // Если они не анимируются, возможно, нужно изменить threshold или добавить им свои обсерверы.
+    // Дополнительно: если пользователь сразу прокрутил вниз,
+    // убедимся, что элементы, которые уже в viewport, анимируются.
+    // Это будет обрабатываться в revealContent() для верхних элементов
+    // и animateOnScrollObserver для остальных по мере прокрутки.
 });
