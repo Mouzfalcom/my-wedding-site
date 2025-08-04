@@ -1,27 +1,61 @@
+
+/* --- НАЧАЛО ИЗМЕНЕНИЙ (ВЕСЬ БЛОК html, body) --- */
+/* --- НАЧАЛО ИЗМЕНЕНИЙ (ВЕСЬ БЛОК html, body) --- */
 html, body {
-    height: 100%; /* Убедитесь, что они занимают всю высоту viewport */
+    height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Предотвращает горизонтальную прокрутку */
+    overflow-x: hidden;
+    /* ИЗМЕНИТЬ: Установите желаемый цвет фона для ВСЕЙ страницы.
+       Если вы хотите, чтобы это был цвет футера (черно-серый), то #2e2e2e.
+       Если черный, то #000000.
+       Если вы видите БЕЛУЮ полоску, это из-за #ffffff. */
+    background-color: #2e2e2e; /* <-- ИЗМЕНИТЬ ЭТУ СТРОКУ на желаемый ЦВЕТ ФОНА ВСЕЙ СТРАНИЦЫ */
+    /* Если вы хотите, чтобы между секциями был этот цвет, а не белый */
 }
 
 body {
     font-family: 'Pacifico', cursive;
     line-height: 1.6;
-    color: #ffffff; /* Цвет текста, который вы используете */
-    background-color: #f4f4f4; /* Убедитесь, что это цвет, который вы хотите видеть, если фон просвечивает */
-    /* Или, если вы хотите, чтобы фон был тем же, что и у футера: */
-    /* background-color: #2e2e2e; */
+    color: #ffffff;
+    /* УДАЛИТЬ ЭТУ СТРОКУ: Мы хотим, чтобы фон задавался только на html,
+       иначе body может перекрыть фон html, создавая проблемы. */
+    /* background-color: #2e2e2e; */ /* <-- УДАЛИТЬ ЭТУ СТРОКУ */
+
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    /* Эти стили body уже есть у вас, их не нужно менять,
+       просто убедитесь, что background-color здесь не переопределяет html,
+       если вы хотите, чтобы фон был только у html. */
+    font-family: 'Pacifico', cursive;
+    line-height: 1.6;
+    color: #ffffff; /* Цвет текста по умолчанию */
+    /* background-color: #2e2e2e; <-- МОЖЕТЕ УДАЛИТЬ ЭТУ СТРОКУ, если фон установлен на html */
+
+    display: flex;          /* Делаем body флекс-контейнером */
+    flex-direction: column; /* Элементы будут располагаться по вертикали */
 }
 
 /* НОВЫЕ СТИЛИ ДЛЯ ЭКРАНА-КОНВЕРТА */
 .intro-overlay {
     position: fixed;
     top: 0;
-    left: 5;
+    /* ИЗМЕНИТЬ: 'left: 5;' - это невалидное значение.
+       Должно быть 'left: 0;' или 'left: 5px;' / 'left: 5%'.
+       Обычно для полноэкранного оверлея нужно 'left: 0;'. */
+    left: 0; /* <-- ИЗМЕНИТЬ ЭТУ СТРОКУ */
     width: 100%;
     height: 100%;
-    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg");/* Полупрозрачный белый фон */
+    background-image: url("imgonline-com-ua-Blur-QoPDVXRo6OIw.jpg");
+    /* ДОБАВИТЬ: Если фон intro-overlay - это изображение,
+       нужно убедиться, что оно занимает всю область. */
+    background-size: cover; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ */
+    background-position: center; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ */
+    background-repeat: no-repeat; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ */
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +63,7 @@ body {
     z-index: 9999;
     opacity: 1;
     visibility: visible;
-    transition: opacity 1s ease-out, visibility 1s ease-out; /* Плавное исчезновение */
+    transition: opacity 1s ease-out, visibility 1s ease-out;
     cursor: pointer;
 }
 
@@ -93,11 +127,13 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 1s ease-out, visibility 1s ease-out;
-    min-height: 100vh; /* Убедимся, что основной контент занимает как минимум всю высоту viewport */
-    display: flex;
-    flex-direction: column; /* Если вы хотите, чтобы футер был прижат к низу */
+    /* --- НАЧАЛО ИЗМЕНЕНИЙ (В БЛОКЕ main-content) --- */
+    min-height: 100vh; /* Сохраняем, чтобы контент был как минимум высотой экрана */
+    flex-grow: 1;      /* <-- ДОБАВИТЬ: Этот элемент будет занимать все доступное пространство */
+    padding-bottom: 0;
+    margin-bottom: 0;
+    /* --- КОНЕЦ ИЗМЕНЕНИЙ --- */
 }
-
 .main-content.show {
     opacity: 1;
     visibility: visible;
@@ -174,13 +210,16 @@ body {
 /* Стили для секции заголовка/героя (главного баннера) */
 .hero-section {
     position: relative;
-    height: 100vh;
+    /* --- НАЧАЛО ИЗМЕНЕНИЙ --- */
+    /* ИЗМЕНИТЬ: Устанавливаем высоту в 100% от высоты видимой области экрана */
+    height: 100vh; /* <-- ИЗМЕНИТЬ ЭТУ СТРОКУ */
+    /* --- КОНЕЦ ИЗМЕНЕНИЙ --- */
     display: flex;
     justify-content: center;
     align-items: center;
     color: #de9c00;
-    background-image: url("photo_5204105761557443087_y.jpg"); /* Это фон титульной страницы */
-    background-attachment: local;
+    background-image: url("photo_5204105761557443087_y.jpg");
+    background-attachment: local; /* Важно для мобильных */
     background-size: cover;
     background-position: 15% 25%; /* Возможно, потребуется точная настройка */
     background-repeat: no-repeat;
@@ -539,12 +578,13 @@ footer {
     color: #fffefe;
     text-align: center;
     padding: 20px 0;
-    margin-top: 40px; /* Проверьте этот margin-top, возможно, он слишком большой */
+    margin-top: 40px; /* Этот margin-top оставляет отступ над футером, если он нужен */
     font-size: 0.9em;
-    /* Убедитесь, что нет нежелательных отступов снизу */
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
+    /* --- НАЧАЛО ИЗМЕНЕНИЙ (В БЛОКЕ footer) --- */
+    margin-bottom: 0 !important;   /* <-- ДОБАВИТЬ/ИЗМЕНИТЬ */
+    padding-bottom: 0 !important;  /* <-- ДОБАВИТЬ/ИЗМЕНИТЬ */
+    border-bottom: none !important; /* <-- ДОБАВИТЬ/ИЗМЕНИТЬ */
+    /* --- КОНЕЦ ИЗМЕНЕНИЙ --- */
 }
 /* Стили для полосы-разделителя */
 .section-separator {
@@ -726,11 +766,16 @@ footer {
 
 
 /* Стили для блока RSVP */
+/* Пример для rsvp-block, проверьте другие последние элементы */
 .rsvp-block {
     margin-top: 30px;
-    opacity: 0; /* Начальное состояние для анимации */
-    transform: translateY(30px); /* Начальное состояние для анимации */
-    transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s; /* Задержка анимации */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s;
+    /* --- НАЧАЛО ИЗМЕНЕНИЙ --- */
+    margin-bottom: 0; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ, если полоса появляется из-за нижнего отступа rsvp-block */
+    padding-bottom: 0; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ, если полоса появляется из-за нижнего отступа rsvp-block */
+    /* --- КОНЕЦ ИЗМЕНЕНИЙ --- */
 }
 
 /* Анимация появления для блока RSVP */
