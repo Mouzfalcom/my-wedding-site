@@ -43,19 +43,14 @@ body {
 .intro-overlay {
     position: fixed;
     top: 0;
-    /* ИЗМЕНИТЬ: 'left: 5;' - это невалидное значение.
-       Должно быть 'left: 0;' или 'left: 5px;' / 'left: 5%'.
-       Обычно для полноэкранного оверлея нужно 'left: 0;'. */
-    left: 0; /* <-- ИЗМЕНИТЬ ЭТУ СТРОКУ */
+    left: 0;
     width: 100%;
     height: 100%;
     background-image: url("background.jpg");
-    /* ДОБАВИТЬ: Если фон intro-overlay - это изображение,
-       нужно убедиться, что оно занимает всю область. */
-    background-size: cover; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ */
-    background-position: left;
-    background-repeat: no-repeat; /* <-- ДОБАВИТЬ ЭТУ СТРОКУ */
-    background-position: 8% 25%;
+    background-size: cover;
+    /* background-position: left; */ /* <-- УБРАТЬ ЭТУ СТРОКУ, она дублируется и будет переопределена */
+    background-repeat: no-repeat;
+    background-position: 8% 25%; /* Оставить эту как основную для десктопа */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,13 +58,15 @@ body {
     z-index: 9999;
     opacity: 1;
     visibility: visible;
-    transition: opacity 1s ease-out, visibility 1s ease-out;
+    /* Увеличим время transition для более плавного исчезновения */
+    transition: opacity 1.5s ease-out, visibility 1.5s ease-out; /* Увеличено до 1.5s */
     cursor: pointer;
 }
-
 .intro-overlay.fade-out {
     opacity: 0;
     visibility: hidden;
+    /* Убедимся, что transition также применен к fade-out */
+    transition: opacity 1.5s ease-out, visibility 1.5s ease-out; /* Важно, чтобы соответствовало выше */
 }
 
 .intro-content {
@@ -126,17 +123,22 @@ body {
 .main-content {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1s ease-out, visibility 1s ease-out;
-    /* --- НАЧАЛО ИЗМЕНЕНИЙ (В БЛОКЕ main-content) --- */
-    min-height: 100vh; /* Сохраняем, чтобы контент был как минимум высотой экрана */
-    flex-grow: 1;      /* <-- ДОБАВИТЬ: Этот элемент будет занимать все доступное пространство */
+    /* Увеличим время transition для более плавного появления и добавим transform */
+    transition: opacity 1.5s ease-out, visibility 1.5s ease-out, transform 1.5s ease-out; /* Добавлено transform */
+    /* Начальное состояние для анимации transform */
+    
+    /* Или: transform: scale(0.98); */ /* Будет слегка увеличиваться */
+    min-height: 100vh;
+    flex-grow: 1;
     padding-bottom: 0;
     margin-bottom: 0;
-    /* --- КОНЕЦ ИЗМЕНЕНИЙ --- */
 }
+
 .main-content.show {
     opacity: 1;
     visibility: visible;
+    transform: translateY(0); /* Конечная позиция */
+    /* Или: transform: scale(1); */
 }
 
 /* =========================================== */
@@ -172,9 +174,9 @@ body {
     }
 
     .click-message {
-       font-size: 7vw;
-        top: 222%;
-        left: 94%;
+       font-size: 8vw;
+        top: 197%;
+        left: 46%;
         transform: translateX(31%);
     }
 }
