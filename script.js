@@ -8,20 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (introOverlay) {
             introOverlay.classList.add('fade-out'); // Запускаем анимацию исчезновения оверлея
 
-            // --- НОВОЕ ДОБАВЛЕНИЕ / ИЗМЕНЕНИЕ ---
             // Если mainContent уже есть в DOM, сразу добавляем класс show, чтобы запустить blur-анимацию.
-            // Это важно, чтобы transition сработал сразу.
             if (mainContent) {
-                mainContent.classList.add('show'); 
+                mainContent.classList.add('show');
             }
-            // --- КОНЕЦ НОВОГО ДОБАВЛЕНИЯ / ИЗМЕНЕНИЯ ---
 
             // Ждем завершения анимации исчезновения оверлея
-            // (время должно соответствовать transition в CSS, например, 1.5s)
             introOverlay.addEventListener('transitionend', function handler() {
                 // Удаляем intro-overlay из DOM после завершения анимации
                 introOverlay.remove();
-                
+
                 // Удаляем слушатель события, чтобы избежать повторных вызовов
                 this.removeEventListener('transitionend', handler);
 
@@ -32,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 elementsToAnimate.forEach(element => {
                     animateOnScrollObserver.observe(element);
                 });
-            });
+            }, { once: true }); // Использовать { once: true } для автоматического удаления слушателя
         }
     }
 
@@ -51,10 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCalendar(year, month, highlightDay) {
         if (!calendarGrid) return;
 
+        // Удаляем существующие дни, но оставляем названия дней недели
         const existingDays = calendarGrid.querySelectorAll('.day:not(.day-name)');
         existingDays.forEach(day => day.remove());
 
         const firstDayOfMonth = new Date(year, month, 1).getDay();
+        // Приводим воскресенье (0) к 6, остальные дни - от 0 до 5
         let startDayOffset = (firstDayOfMonth === 0) ? 6 : firstDayOfMonth - 1;
 
         const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -76,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Отображаем календарь при загрузке страницы
     renderCalendar(targetYear, targetMonth, highlightedDate);
 
     // === Анимация при прокрутке ===
@@ -83,27 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                observer.unobserve(entry.target); // Остановить наблюдение после появления
             }
         });
     }, {
-        threshold: 0.1
+        threshold: 0.1 // Элемент виден на 10%
     });
 
+    // Список всех элементов, которые должны анимироваться при прокрутке
     const elementsToAnimate = document.querySelectorAll(
-        '.invitation-block-wrapper, .story-text, .highlight-text-block, .story-text h3, .story-text h4, .calendar-wrapper, .rsvp-block'
+        '.invitation-block-wrapper, .story-text, .highlight-text-block, .story-text h3, .story-text h4, .calendar-wrapper, .rsvp-block, .location-details-wrapper' // <-- Добавлено .location-details-wrapper
     );
 
     // Initial check for elements already in viewport on page load (if intro overlay is not present initially)
-    // This part is mostly for when the page loads *without* the intro overlay (e.g., direct access)
-    // If the intro overlay is always present, this block might be less critical but harmless.
-    /* --- НОВОЕ ДОБАВЛЕНИЕ / ИЗМЕНЕНИЕ: Условие для запуска IntersectionObserver --- */
-    // Мы запускаем Observer, только если introOverlay отсутствует ИЛИ уже скрыт.
-    // Если introOverlay присутствует и виден, Observer будет запущен после revealContent.
+    // or if the intro overlay has already faded out (e.g., page reloaded after a click).
+    // If the intro overlay is always present, the observer will be started after revealContent.
     if (!introOverlay || introOverlay.classList.contains('fade-out')) {
         elementsToAnimate.forEach(element => {
             animateOnScrollObserver.observe(element);
         });
     }
-    /* --- КОНЕЦ НОВОГО ДОБАВЛЕНИЯ / ИЗМЕНЕНИЯ --- */
 });

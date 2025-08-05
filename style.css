@@ -797,7 +797,204 @@ footer {
     50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
     100% { transform: translateX(-50%) scale(1); opacity: 1; }
 }
+/* =========================================== */
+/* Стили для секции Местоположение (Location Section) */
+/* =========================================== */
 
+
+.location-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(180, 176, 176, 0.1); /* Полупрозрачный оверлей для фона */
+    z-index: 0;
+}
+
+.location-section .container {
+    position: relative;
+    z-index: 1; /* Гарантируем, что контент над оверлеем */
+}
+
+.location-section .section-title {
+    font-family: 'Oswald', sans-serif;
+    color: #000000;
+    margin-bottom: 40px;
+    font-size: 2.5em; /* Можно настроить размер */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.location-details-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 700px; /* Максимальная ширина для содержимого */
+    margin: 0 auto 40px auto;
+    padding: 30px;
+    box-sizing: border-box;
+    opacity: 0; /* Для анимации появления */
+    transform: translateY(30px); /* Для анимации появления */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Анимация появления для обертки деталей локации */
+.location-details-wrapper.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.location-name {
+    font-family: 'Oswald', sans-serif; /* Используем Pacifico для названия */
+    font-size: 2.2em;
+    color: #de9c00; /* Цвет акцента */
+    margin-bottom: 10px;
+}
+
+.location-address {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    color: #555555;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.map-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9 / 16 * 100) - для адаптивной карты */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.map-button {
+    display: inline-block;
+    background-color: #de9c00;
+    color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.map-button:hover {
+    background-color: #c48700;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================== */
+/* Адаптивный дизайн для секции Местоположение */
+/* =========================================== */
+
+@media (max-width: 1280px) {
+    .location-section .section-title {
+        font-size: 2.2em;
+    }
+    .location-details-wrapper {
+        padding: 25px;
+    }
+    .location-name {
+        font-size: 2em;
+    }
+    .location-address {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .location-section {
+        padding: 40px 0;
+    }
+    .location-section .section-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+    .location-details-wrapper {
+        max-width: 90%;
+        padding: 20px;
+    }
+    .location-name {
+        font-size: 1.8em;
+    }
+    .location-address {
+        font-size: 1em;
+    }
+    .map-button {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .location-section {
+        padding: 30px 0;
+    }
+    .location-section .section-title {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+    }
+    .location-details-wrapper {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .location-name {
+        font-size: 1.6em;
+        margin-bottom: 8px;
+    }
+    .location-address {
+        font-size: 0.9em;
+        margin-bottom: 20px;
+    }
+    .map-container {
+        padding-bottom: 75%; /* 4:3 Aspect Ratio (3 / 4 * 100) для мобильных, чтобы карта была выше */
+        margin-bottom: 20px;
+    }
+    .map-button {
+        padding: 8px 20px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 340px) {
+    .location-section .section-title {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+    .location-details-wrapper {
+        padding: 10px;
+    }
+    .location-name {
+        font-size: 1.4em;
+    }
+    .location-address {
+        font-size: 0.8em;
+    }
+    .map-button {
+        padding: 7px 18px;
+        font-size: 0.8em;
+    }
+}
 
 /* Стили для блока RSVP */
 .rsvp-block {
