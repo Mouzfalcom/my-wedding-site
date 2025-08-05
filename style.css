@@ -62,7 +62,7 @@ body {
 .click-message {
     font-family: 'Pacifico', cursive;
     font-size: 2.2em;
-    color: #009bde;
+    color: #000000;
     text-transform: none;
     letter-spacing: 1px;
     opacity: 0;
@@ -283,8 +283,7 @@ body {
 .hero-content h1,
 .hero-content h2,
 .hero-content h3,
-.hero-content p,
-.click-message {
+.hero-content p {
     text-shadow:
         2px 2px 4px rgba(0, 0, 0, 0.7),
         -2px -2px 4px rgba(0, 0, 0, 0.7),
