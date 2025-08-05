@@ -8,7 +8,7 @@ html, body {
 }
 
 body {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Oswald', sans-serif;
     line-height: 1.6;
     color: #ffffff;
     display: flex;
@@ -62,7 +62,7 @@ body {
 .click-message {
     font-family: 'Pacifico', cursive;
     font-size: 2.2em;
-    color: #de9c00;
+    color: #009bde;
     text-transform: none;
     letter-spacing: 1px;
     opacity: 0;
@@ -377,16 +377,17 @@ body {
 
 /* Стили для секции "Наша История" */
 .our-story-section {
-    padding: 60px 0;
-    background-color: #d4cece;
+   padding: 60px 0;
+    background-color: #f7f7f7;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: #333333;
     background-image: url("dekorration1.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
 }
 
 /* Псевдоэлемент для наложения полупрозрачного слоя поверх фона в .our-story-section */
