@@ -279,6 +279,7 @@ body {
     box-sizing: border-box;
 }
 
+
 /* Общий стиль для всех текстовых элементов в hero-content для тени */
 .hero-content h1,
 .hero-content h2,
@@ -363,6 +364,7 @@ body {
     animation: fadeInName 1s ease-out forwards;
     animation-delay: 1s;
 }
+
 
 /* Стили для полосы-разделителя */
 .section-separator {
@@ -995,6 +997,93 @@ footer {
         font-size: 0.8em;
     }
 }
+/* =========================================== */
+/* Стили для Таймера Обратного Отсчета */
+/* =========================================== */
+.hero-content p {
+     font-family: 'Oswald', sans-serif;
+    font-size: 1.3em;
+    color: #000000;
+    margin-bottom: 15px;
+    }
+
+#countdown-timer {
+    font-family: 'Oswald', sans-serif; 
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Расстояние между единицами времени */
+    margin-top: 30px; /* Отступ сверху от даты */
+    padding: 15px 25px;
+    background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон для читаемости */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #de9c00; /* Цвет текста таймера */
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    opacity: 0; /* Изначально скрыт для анимации */
+    animation: fadeInName 1s ease-out forwards; /* Используем ту же анимацию появления */
+    animation-delay: 1.3s; /* Задержка после даты */
+    white-space: nowrap; /* Предотвращаем перенос строк */
+}
+
+.timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer-unit span:first-child { /* Числа таймера */
+    font-size: 2.5em; /* Размер чисел */
+    line-height: 1.1;
+}
+
+.timer-unit .label { /* Текст "Днів", "Годин" и т.д. */
+    font-size: 0.8em; /* Размер подписей */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+/* Адаптивный дизайн для таймера */
+@media (max-width: 768px) {
+    #countdown-timer {
+        gap: 15px;
+        padding: 10px 15px;
+    }
+    .timer-unit span:first-child {
+        font-size: 1.8em;
+    }
+    .timer-unit .label {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 480px) {
+    #countdown-timer {
+        gap: 10px;
+        padding: 8px 10px;
+        margin-top: 20px;
+    }
+    .timer-unit span:first-child {
+        font-size: 1.5em;
+    }
+    .timer-unit .label {
+        font-size: 0.6em;
+    }
+}
+
+@media (max-width: 340px) {
+    #countdown-timer {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    .timer-unit span:first-child {
+        font-size: 1.2em;
+    }
+    .timer-unit .label {
+        font-size: 0.5em;
+    }
+}
 
 /* Стили для блока RSVP */
 .rsvp-block {
@@ -1105,6 +1194,7 @@ footer {
         top: -6px;
     }
 }
+
 
 /* =========================================== */
 /* Адаптивный дизайн: Медиа-запросы */

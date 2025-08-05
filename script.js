@@ -3,6 +3,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const introOverlay = document.getElementById('introOverlay');
     const mainContent = document.getElementById('mainContent');
 
+    // === Список всех элементов, которые должны анимироваться при прокрутке ===
+    // Таймер #countdown-timer добавлен сюда, чтобы он также управлялся IntersectionObserver,
+    // если вам нужен эффект появления при скролле.
+    // Если хотите, чтобы таймер появлялся сразу с .main-content.show,
+    // то нужно убрать его из этого списка и управлять его видимостью напрямую
+    // в функции revealContent.
+    const elementsToAnimate = document.querySelectorAll(
+        '.invitation-block-wrapper, .story-text, .highlight-text-block, .story-text h3, .story-text h4, .calendar-wrapper, .rsvp-block, .location-details-wrapper, #countdown-timer'
+    );
+
+    // === IntersectionObserver для анимации при прокрутке ===
+    const animateOnScrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Остановить наблюдение после появления
+            }
+        });
+    }, {
+        threshold: 0.1 // Элемент виден на 10%
+    });
+
     // === Функция для скрытия intro-overlay и показа main-content ===
     function revealContent() {
         if (introOverlay) {
@@ -22,20 +44,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.removeEventListener('transitionend', handler);
 
                 // Важно: Инициируем наблюдение IntersectionObserver только после того,
-                // как mainContent стал видимым и transition для blur завершился.
-                // Это гарантирует, что анимации элементов внутри mainContent будут запускаться
-                // по мере прокрутки, а не до того, как страница станет сфокусированной.
+                // как mainContent стал видимым.
                 elementsToAnimate.forEach(element => {
                     animateOnScrollObserver.observe(element);
                 });
-            }, { once: true }); // Использовать { once: true } для автоматического удаления слушателя
+
+                // Также, если таймер должен начать работать сразу после открытия,
+                // вызываем его обновление здесь.
+                // Если таймер управляется animateOnScrollObserver, то эта строка не нужна.
+                // updateCountdown(); // Если хотите, чтобы таймер запустился сразу
+            }, { once: true });
         }
     }
 
     // Слушатель клика по экрану-конверту
     if (introOverlay) {
-        // Добавляем обработчик только один раз
         introOverlay.addEventListener('click', revealContent, { once: true });
+    } else {
+        // Если introOverlay по какой-то причине не найден (например, при отладке или после перезагрузки),
+        // запускаем анимации прокрутки сразу.
+        elementsToAnimate.forEach(element => {
+            animateOnScrollObserver.observe(element);
+        });
+        if (mainContent) {
+            mainContent.classList.add('show'); // Убедиться, что mainContent виден
+        }
     }
 
     // === Календарь ===
@@ -77,29 +110,59 @@ document.addEventListener('DOMContentLoaded', () => {
     // Отображаем календарь при загрузке страницы
     renderCalendar(targetYear, targetMonth, highlightedDate);
 
-    // === Анимация при прокрутке ===
-    const animateOnScrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Остановить наблюдение после появления
-            }
-        });
-    }, {
-        threshold: 0.1 // Элемент виден на 10%
-    });
 
-    // Список всех элементов, которые должны анимироваться при прокрутке
-    const elementsToAnimate = document.querySelectorAll(
-        '.invitation-block-wrapper, .story-text, .highlight-text-block, .story-text h3, .story-text h4, .calendar-wrapper, .rsvp-block, .location-details-wrapper' // <-- Добавлено .location-details-wrapper
-    );
+    // === Таймер Обратного Отсчета ===
+    // Дата и время свадьбы: 12 декабря 2025 года, 11:00 утра.
+    // Важно: Месяцы в JavaScript начинаются с 0 (Январь = 0, Декабрь = 11).
+    // Для Франкфурта (CET/CEST) используем формат ISO 8601 с указанием часового пояса.
+    // В декабре 2025 года будет действовать CET (UTC+1).
+    const weddingDate = new Date('2025-12-12T11:00:00+01:00').getTime(); // Указание часового пояса CET (+01:00)
 
-    // Initial check for elements already in viewport on page load (if intro overlay is not present initially)
-    // or if the intro overlay has already faded out (e.g., page reloaded after a click).
-    // If the intro overlay is always present, the observer will be started after revealContent.
-    if (!introOverlay || introOverlay.classList.contains('fade-out')) {
-        elementsToAnimate.forEach(element => {
-            animateOnScrollObserver.observe(element);
-        });
+    const countdownTimerElement = document.getElementById("countdown-timer");
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+
+    function updateCountdown() {
+        if (!countdownTimerElement) return; // Проверка на существование элемента
+
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            clearInterval(countdownInterval); // Остановить интервал
+            countdownTimerElement.innerHTML = `
+                <div style="text-align: center; width: 100%;">
+                    <span style="font-size: 1.8em; color: #de9c00;">Ми вже одружилися!</span>
+                    <br>
+                    <span style="font-size: 0.9em; color: #ffffff; opacity: 0.8;">Дякуємо, що були з нами!</span>
+                </div>
+            `;
+            // Очищаем стили, чтобы текст "Ми одружилися!" выглядел лучше
+            countdownTimerElement.style.padding = '0';
+            countdownTimerElement.style.backgroundColor = 'transparent';
+            countdownTimerElement.style.boxShadow = 'none';
+            countdownTimerElement.style.gap = '0';
+            return; // Выходим из функции
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Обновляем текст в элементах, если они существуют
+        if (daysElement) daysElement.innerHTML = days;
+        if (hoursElement) hoursElement.innerHTML = hours;
+        if (minutesElement) minutesElement.innerHTML = minutes;
+        if (secondsElement) secondsElement.innerHTML = seconds;
     }
+
+    // Запускаем таймер, обновляя его каждую секунду
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    // Вызываем updateCountdown один раз сразу, чтобы избежать задержки в одну секунду при первой загрузке
+    updateCountdown();
+
 });
