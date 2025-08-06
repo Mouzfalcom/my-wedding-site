@@ -284,7 +284,8 @@ body {
 .hero-content h1,
 .hero-content h2,
 .hero-content h3,
-.hero-content p {
+.hero-content p,
+.rsvp-block p  {
     text-shadow:
         2px 2px 4px rgba(0, 0, 0, 0.7),
         -2px -2px 4px rgba(0, 0, 0, 0.7),
@@ -640,18 +641,7 @@ footer {
     box-shadow: none;
 }
 
-/* Заголовок "Проведемо чудовий час разом на весіллі !" (h3) */
-.section-title h3{
-    font-family: 'Oswald', sans-serif;
-    font-size: 8em;
-    color: #000000;
-    margin-top: 30px;
-    text-transform: uppercase;
-    line-height: 7;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out 0.6s, transform 0.8s ease-out 0.6s;
-}
+
 
 
 /* Styles for the new Calendar Section */
@@ -700,7 +690,17 @@ footer {
     color: #000000;
     margin-bottom: 40px;
 }
-
+.section-title h3{
+    font-family: 'Oswald', sans-serif;
+    font-size: 8em;
+    color: #000000;
+    margin-top: 30px;
+    text-transform: uppercase;
+    line-height: 7;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out 0.6s, transform 0.8s ease-out 0.6s;
+}
 .calendar-wrapper {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
@@ -843,7 +843,7 @@ footer {
     font-family: 'Oswald', sans-serif;
     color: #000000;
     margin-bottom: 40px;
-    font-size: 2.5em; /* Можно настроить размер */
+    font-size: 2em; /* Можно настроить размер */
     text-transform: uppercase;
     letter-spacing: 3px;
 }
@@ -971,7 +971,7 @@ footer {
         padding: 30px 0;
     }
     .location-section .section-title {
-        font-size: 1.8em;
+        font-size: 1.3em;
         margin-bottom: 25px;
         letter-spacing: 2px;
     }
@@ -999,7 +999,7 @@ footer {
 
 @media (max-width: 340px) {
     .location-section .section-title {
-        font-size: 1.6em;
+        font-size: 1.4em;
         margin-bottom: 20px;
     }
     .location-details-wrapper {
@@ -1132,10 +1132,20 @@ footer {
 }
 
 .rsvp-block p {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.3em;
-    color: #000000;
-    margin-bottom: 15px;
+     font-family: 'Oswald', sans-serif;
+     font-size: 1.5em;
+    color: #de9c00;
+    letter-spacing: 3px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    font-weight: 900;
+    white-space: nowrap;
+    position: relative;
+    left: auto;
+    transform: none;
+    opacity: 0;
+    animation: fadeInName 1s ease-out forwards;
+    animation-delay: 1s;
 }
 
 .rsvp-button {
@@ -1212,7 +1222,7 @@ footer {
         padding-bottom: 6px;
     }
     .rsvp-block p {
-        font-size: 1em;
+        font-size: 139%;
     }
     .rsvp-button {
         padding: 8px 20px;
