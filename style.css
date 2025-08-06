@@ -378,20 +378,28 @@ body {
 
 /* Стили для секции "Наша История" */
 .our-story-section {
-   padding: 60px 0;
+    padding: 60px 0;
     background-color: #f7f7f7;
     text-align: center;
     position: relative;
     overflow: hidden;
     color: #333333;
-    background-image: url("Hintergrund.jpg");
+
+    /* ДОБАВЛЕНИЕ ГРАДИЕНТА ДЛЯ ПЛАВНОГО ПЕРЕХОДА ВНИЗ */
+    background-image:
+        linear-gradient(to bottom,
+                        rgba(247, 247, 247, 0) 0%, /* Прозрачный вверху (чтобы не закрывать фон) */
+                        #f7f7f7 100% /* Полностью #f7f7f7 внизу, соответствует background-color */
+        ),
+        url("blick-auf-zarte-weisse-rosenbluten.jpg"); /* Ваше фоновое изображение */
+
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-/* Псевдоэлемент для наложения полупрозрачного слоя поверх фона в .our-story-section */
+/* Ваш существующий оверлей. Убедитесь, что он не слишком сильно закрывает эффект градиента. */
 .our-story-section::before {
     content: '';
     position: absolute;
@@ -399,7 +407,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(180, 176, 176, 0.1);
+    background-color: rgba(180, 176, 176, 0.1); /* Можно сделать его чуть менее плотным, например, 0.05, если нужно больше видеть фон */
     z-index: 0;
 }
 
@@ -647,6 +655,7 @@ footer {
 
 
 /* Styles for the new Calendar Section */
+/* Styles for the new Calendar Section */
 .calendar-section {
     padding: 60px 0;
     background-color: #f7f7f7;
@@ -654,13 +663,22 @@ footer {
     position: relative;
     overflow: hidden;
     color: #333333;
-    background-image: url("Hintergrund.jpg");
+
+    /* ДОБАВЛЕНИЕ ГРАДИЕНТА ДЛЯ ПЛАВНОГО ПЕРЕХОДА СВЕРХУ */
+    background-image:
+        linear-gradient(to top,
+                        rgba(247, 247, 247, 0) 0%, /* Прозрачный внизу (чтобы не закрывать фон) */
+                        #f7f7f7 100% /* Полностью #f7f7f7 вверху, соответствует background-color */
+        ),
+        url("blick-auf-zarte-weisse-rosenbluten.jpg"); /* Ваше новое фоновое изображение */
+
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
+/* Ваш существующий оверлей. Возможно, его прозрачность нужно будет настроить. */
 .calendar-section::before {
     content: '';
     position: absolute;
@@ -668,6 +686,7 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
+    background-color: rgba(180, 176, 176, 0.1); /* Если хотите, чтобы фон был более заметным, уменьшите прозрачность (например, до 0.05) */
     z-index: 0;
 }
 
