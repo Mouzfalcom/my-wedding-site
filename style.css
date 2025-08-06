@@ -384,7 +384,7 @@ body {
     position: relative;
     overflow: hidden;
     color: #333333;
-    background-image: url("dekorration1.jpg");
+    background-image: url("Hintergrund.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -654,7 +654,7 @@ footer {
     position: relative;
     overflow: hidden;
     color: #333333;
-    background-image: url("dekorration1.jpg");
+    background-image: url("Hintergrund.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1000,11 +1000,21 @@ footer {
 /* =========================================== */
 /* Стили для Таймера Обратного Отсчета */
 /* =========================================== */
-.hero-content p {
+.date  {
      font-family: 'Oswald', sans-serif;
-    font-size: 1.3em;
-    color: #000000;
-    margin-bottom: 15px;
+     font-size: 1.5em;
+    color: #de9c00;
+    letter-spacing: 3px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    font-weight: 900;
+    white-space: nowrap;
+    position: relative;
+    left: auto;
+    transform: none;
+    opacity: 0;
+    animation: fadeInName 1s ease-out forwards;
+    animation-delay: 1s;
     }
 
 #countdown-timer {
