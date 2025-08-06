@@ -386,7 +386,13 @@ body {
     color: #333333;
 
     /* ДОБАВЛЕНИЕ ГРАДИЕНТА ДЛЯ ПЛАВНОГО ПЕРЕХОДА ВНИЗ */
-    background-image:url("dekorration1.jpg"); /* Ваше фоновое изображение */
+    background-image:
+        linear-gradient(to bottom,
+                        rgba(247, 247, 247, 0) 0%, /* Прозрачный вверху (чтобы не закрывать фон) */
+                        #f7f7f7 100% /* Полностью #f7f7f7 внизу, соответствует background-color */
+        ),
+        url("dekorration1.jpg"); /* Ваше фоновое изображение */
+
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -659,7 +665,13 @@ footer {
     color: #333333;
 
     /* ДОБАВЛЕНИЕ ГРАДИЕНТА ДЛЯ ПЛАВНОГО ПЕРЕХОДА СВЕРХУ */
-    background-image:url("dekorration1.jpg"); /* Ваше новое фоновое изображение */
+    background-image:
+        linear-gradient(to top,
+                        rgba(247, 247, 247, 0) 0%, /* Прозрачный внизу (чтобы не закрывать фон) */
+                        #f7f7f7 100% /* Полностью #f7f7f7 вверху, соответствует background-color */
+        ),
+        url("dekorration1.jpg"); /* Ваше новое фоновое изображение */
+
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
