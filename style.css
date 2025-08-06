@@ -641,7 +641,15 @@ footer {
     box-shadow: none;
 }
 
-
+/* Заголовок "Проведемо чудовий час разом на весіллі !" (h3) */
+.section-title h3{
+    font-family: 'Oswald', sans-serif;
+    color: #000000;
+    margin-bottom: 40px;
+    font-size: 2em; /* Можно настроить размер */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
 
 
 /* Styles for the new Calendar Section */
@@ -1471,4 +1479,25 @@ footer {
      .section-title h3 {
          font-size: 130%;
      }
+}
+/* =========================================== */
+/* ИСПРАВЛЕНИЕ ПРОИЗВОДИТЕЛЬНОСТИ НА МОБИЛЬНЫХ */
+/* =========================================== */
+
+@media (max-width: 768px) { /* Применяем для планшетов и телефонов */
+    .our-story-section,
+    .calendar-section,
+    .location-section { /* Если у location-section тоже fixed */
+        background-attachment: scroll !important; /* Или local */
+        /* !important используется для гарантированного переопределения. */
+        /* Попробуйте без него сначала, если не сработает, то с !important */
+    }
+
+    /* Опционально: Для hero-section, если там тоже возникают проблемы с производительностью, */
+    /* хотя у вас там уже local. Если вы хотите, чтобы фон parallax был только на десктопе: */
+    /*
+    .hero-section {
+        background-attachment: scroll !important;
+    }
+    */
 }
