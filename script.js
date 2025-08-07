@@ -4,50 +4,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('mainContent');
 
     if (introOverlay && mainContent) {
-        // Убедимся, что mainContent изначально скрыт и размыт через CSS (opacity и filter)
-        // Эту строку mainContent.style.display = 'none'; - УДАЛИТЕ ИЗ JS
-        // Она должна быть заменена на CSS: opacity: 0; visibility: hidden; filter: blur(20px);
-        // и переход transition: opacity 1s ease-out, visibility 1s ease-out, filter 1s ease-out;
+        // Убедитесь, что mainContent ИЗНАЧАЛЬНО скрыт в CSS с opacity: 0 и visibility: hidden,
+        // а не с display: none в JS. Это ключ к плавной анимации.
+        // Пример CSS для mainContent (ДОБАВЬТЕ ЭТО В ВАШ weddingbody.css):
+        /*
+        #mainContent {
+            opacity: 0;
+            visibility: hidden; // Скрывает элемент, но сохраняет его место в DOM
+            filter: blur(20px);
+            transition: opacity 1s ease-out, visibility 1s ease-out, filter 1s ease-out;
+            will-change: opacity, filter, transform; // Для аппаратного ускорения
+        }
+        #mainContent.show-content {
+            opacity: 1;
+            visibility: visible;
+            filter: blur(0);
+        }
+        */
 
         introOverlay.addEventListener('click', () => {
-            introOverlay.style.opacity = '0'; // Запускает анимацию исчезновения оверлея
+            introOverlay.style.opacity = '0'; // Запускает анимацию исчезновения оверлея (opacity)
 
-            // Вместо mainContent.style.display = 'block'; добавляем класс для активации анимации
-            // CSS-класс 'show-content' будет отвечать за opacity: 1, visibility: visible, filter: blur(0)
+            // Добавляем класс 'show-content' для mainContent, чтобы он начал плавно появляться
             mainContent.classList.add('show-content');
 
+            // Скрываем оверлей полностью после завершения анимации opacity
             setTimeout(() => {
-                introOverlay.style.display = 'none'; // Полностью скрываем оверлей после анимации
+                introOverlay.style.display = 'none'; // Убираем из потока документа
+                introOverlay.style.visibility = 'hidden'; // Дополнительно скрываем
                 document.body.style.overflow = ''; // Восстанавливаем прокрутку
-            }, 1000); // Должно соответствовать transition в CSS (для opacity оверлея)
+            }, 1000); // Должно соответствовать длительности transition для opacity оверлея в CSS
         });
     } else if (mainContent) {
         // Если introOverlay не найден, mainContent должен быть сразу виден
-        // Также добавляем класс для показа, если оверлей отсутствует
-        mainContent.classList.add('show-content');
+        mainContent.classList.add('show-content'); // Активируем класс показа
         document.body.style.overflow = '';
     }
 
-    // --- Добавьте этот CSS-код в ваш файл weddingbody.css ---
-    /*
-    #mainContent {
-        opacity: 0;
-        visibility: hidden;
-        filter: blur(20px);
-        transition: opacity 1s ease-out, visibility 1s ease-out, filter 1s ease-out;
-    }
-
-    #mainContent.show-content {
-        opacity: 1;
-        visibility: visible;
-        filter: blur(0);
-    }
-    */
-    // --------------------------------------------------------
-
-
     // === Код: Анимации при прокрутке (Intersection Observer) ===
-    // #countdown-timer добавлен для наблюдения, чтобы анимация появлялась при скролле.
+    // #countdown-timer добавлен для наблюдения, чтобы его анимация появлялась при скролле.
     const sectionsToAnimate = document.querySelectorAll(
         '.invitation-block-wrapper, .story-text, .highlight-text-block, .calendar-wrapper, .rsvp-block, .location-details-wrapper, #countdown-timer'
     );
@@ -72,26 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sectionsToAnimate.forEach(section => {
         observer.observe(section);
     });
-
-    // --- Добавьте этот CSS-код в ваш файл weddingbody.css, если хотите анимацию таймера при скролле ---
-    /*
-    #countdown-timer {
-        opacity: 0; // Изначально скрыт
-        // Убедитесь, что здесь НЕТ прямых свойств animation или animation-delay
-    }
-
-    #countdown-timer.animate-on-scroll {
-        animation: fadeInName 1s ease-out forwards; // Анимация, которая сработает при скролле
-        animation-delay: 0s; // Задержка не нужна, так как Observer уже сработал
-    }
-
-    @keyframes fadeInName { // Убедитесь, что этот keyframe определен
-        0% { opacity: 0; transform: translateY(20px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
-    */
-    // --------------------------------------------------------------------------------------------------
-
 
     // === Код: Выделение дня в календаре ===
     const calendarGrid = document.querySelector('.calendar-grid');
@@ -181,10 +156,102 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === Удаленный/Адаптированный код: Логика модального окна RSVP ===
-    // Весь код, относящийся к открытию/закрытию модального окна RSVP и
-    // обработке формы внутри него, был удален/закомментирован,
-    // так как теперь кнопка RSVP напрямую перенаправляет на Google Forms.
-    // Убедитесь, что HTML-код самого модального окна также удален из index.html.
+    // === ВОССТАНОВЛЕННЫЙ КОД: Логика модального окна RSVP ===
+    // Если вы хотите использовать модальное окно RSVP, вам также нужно убедиться,
+    // что соответствующий HTML для модального окна и кнопка с ID "openRsvpModal"
+    // присутствуют в вашем index.html.
+    const openRsvpModalBtn = document.getElementById('openRsvpModal');
+    const rsvpModal = document.getElementById('rsvpModal');
 
+    if (rsvpModal) {
+        const closeButton = rsvpModal.querySelector('.close-button');
+        const rsvpForm = rsvpModal.querySelector('form');
+
+        if (openRsvpModalBtn) {
+            openRsvpModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                rsvpModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                rsvpModal.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === rsvpModal) {
+                rsvpModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // === ОБРАБОТКА ФОРМЫ С Fetch API (для модального окна) ===
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const form = e.target;
+                const formData = new FormData(form);
+                const formAction = form.action;
+
+                try {
+                    // Важное примечание: 'no-cors' предотвращает чтение ответа сервера,
+                    // что делает невозможным надежно определить успех или ошибку.
+                    // Для реальной серверной обработки лучше использовать CORS или
+                    // отправлять форму традиционным способом, если это Google Forms.
+                    const response = await fetch(formAction, {
+                        method: 'POST',
+                        body: formData,
+                        mode: 'no-cors'
+                    });
+
+                    const modalContent = rsvpModal.querySelector('.modal-content');
+                    modalContent.innerHTML = `
+                        <span class="close-button">×</span>
+                        <h2>Дякуємо за Ваше підтвердження!</h2>
+                        <p>Ми з нетерпінням чекаємо на зустріч з Вами на нашому весіллі.</p>
+                        <button class="submit-rsvp-button" id="closeAfterSubmit">Закрити</button>
+                    `;
+
+                    // Добавляем слушателей к новым кнопкам после их создания
+                    modalContent.querySelector('#closeAfterSubmit').addEventListener('click', () => {
+                        rsvpModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                        // location.reload(); // Раскомментируйте, если нужно перезагружать страницу
+                    });
+
+                    modalContent.querySelector('.close-button').addEventListener('click', () => {
+                        rsvpModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                        // location.reload(); // Раскомментируйте, если нужно перезагружать страницу
+                    });
+
+                } catch (error) {
+                    console.error('Ошибка при отправке формы:', error);
+                    const modalContent = rsvpModal.querySelector('.modal-content');
+                    modalContent.innerHTML = `
+                        <span class="close-button">×</span>
+                        <h2>Виникла помилка!</h2>
+                        <p>Не вдалося відправити Ваше підтвердження. Будь ласка, спробуйте ще раз або зв'яжіться з нами напряму.</p>
+                        <button class="submit-rsvp-button" id="closeError">Закрити</button>
+                    `;
+                    // Добавляем слушателей к новым кнопкам после их создания
+                    modalContent.querySelector('#closeError').addEventListener('click', () => {
+                        rsvpModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                        // location.reload(); // Раскомментируйте, если нужно перезагружать страницу
+                    });
+                    modalContent.querySelector('.close-button').addEventListener('click', () => {
+                        rsvpModal.style.display = 'none';
+                        document.body.style.overflow = '';
+                        // location.reload(); // Раскомментируйте, если нужно перезагружать страницу
+                    });
+                }
+            });
+        }
+    }
 });
