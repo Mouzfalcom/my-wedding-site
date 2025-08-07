@@ -1,18 +1,21 @@
 /* --- НАЧАЛО ИЗМЕНЕНИЙ (ВЕСЬ БЛОК html, body) --- */
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    background-color: #2e2e2e;
+    height: 100%; /* Убедитесь, что html и body занимают всю высоту */
+    /* Устанавливаем основной фон страницы здесь, чтобы он был виден за main-content, если main-content прозрачен */
+    background-color: #f0f0f0; 
+    font-family: 'Oswald', sans-serif; /* Основной шрифт для всего тела */
+    color: #333; /* Основной цвет текста для всего тела */
+    line-height: 1.6;
+    overflow-x: hidden; /* Избежать горизонтальной прокрутки */
 }
 
 body {
-    font-family: 'Oswald', sans-serif;
-    line-height: 1.6;
-    color: #ffffff;
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Гарантирует, что body займет всю высоту, даже если контента мало */
+    position: relative; /* Для правильного позиционирования дочерних элементов */
 }
 
 /* НОВЫЕ СТИЛИ ДЛЯ ЭКРАНА-КОНВЕРТА */
@@ -24,24 +27,23 @@ body {
     height: 100%;
     background-image: url("background1.jpg");
     background-size: cover;
-    /* background-position: left; */ /* <-- УБРАТЬ ЭТУ СТРОКУ, она дублируется и будет переопределена */
     background-repeat: no-repeat;
     background-position: 8% 25%; /* Оставить эту как основную для десктопа */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 9999;
-    opacity: 1;
-    visibility: visible;
-    /* Увеличим время transition для более плавного исчезновения */
-    transition: opacity 1.5s ease-out, visibility 1.5s ease-out; /* Увеличено до 1.5s */
+    z-index: 9999; /* ОЧЕНЬ ВЫСОКИЙ z-index, чтобы быть поверх всего */
+    opacity: 1; /* Изначально полностью видим */
+    visibility: visible; /* Изначально видим */
+    transition: opacity 1.5s ease-out, visibility 1.5s ease-out; /* Плавное исчезновение */
     cursor: pointer;
 }
+/* Этот класс будет добавлен JS для скрытия оверлея */
 .intro-overlay.fade-out {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
+    /* transition: opacity 1.5s ease-out, visibility 1.5s ease-out; -- Дублирование, можно убрать */
 }
 
 .intro-content {
@@ -113,26 +115,20 @@ body {
 /* --- КОНЕЦ НОВОГО ДОБАВЛЕНИЯ --- */
 
 .main-content {
-    opacity: 0;
-    visibility: hidden;
-    /* --- НОВОЕ ИЗМЕНЕНИЕ: Добавляем filter: blur() и transition для него --- */
-    filter: blur(20px); /* Начальное сильное размытие */
-    transition: opacity 1.5s ease-out, visibility 1.5s ease-out, transform 1.5s ease-out, filter 1.5s ease-out; /* ДОБАВЛЕН filter */
-    transform: translateY(20px);
-    /* --- КОНЕЦ НОВОГО ИЗМЕНЕНИЯ --- */
+    /* Эти свойства будет динамически устанавливать JavaScript */
+    /* НЕ УСТАНАВЛИВАЙТЕ ИХ ЗДЕСЬ В CSS: display, opacity, visibility, filter */
+    
+    /* Убедитесь, что у main-content есть фон, чтобы он не был прозрачным на фоне body */
+    background-color: #FFFFFF; /* Важный фон для всего содержимого */
+    color: #333; /* Основной цвет текста для всего контента */
     min-height: 100vh;
     flex-grow: 1;
     padding-bottom: 0;
     margin-bottom: 0;
+    /* transition: opacity 1.5s ease-out, visibility 1.5s ease-out, transform 1.5s ease-out, filter 1.5s ease-out; */ /* Управляется JS */
+    /* transform: translateY(20px); */ /* Управляется JS */
 }
-.main-content.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    /* --- НОВОЕ ДОБАВЛЕНИЕ: Убираем размытие, когда main-content показан --- */
-    filter: blur(0px); /* Конечная точка: без размытия */
-    /* --- КОНЕЦ НОВОГО ДОБАВЛЕНИЯ --- */
-}
+
 
 /* =========================================== */
 /* АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ: МЕДИА-ЗАПРОСЫ ДЛЯ ЭКРАНА-КОНВЕРТА */
@@ -255,7 +251,7 @@ body {
     align-items: center;
     color: #de9c00;
     background-image: url("photo_5204105761557443087_y.jpg");
-    background-attachment: local;
+    background-attachment: local; /* Changed to local for better scrolling on some devices */
     background-size: cover;
     background-position: 15% 25%;
     background-repeat: no-repeat;
@@ -284,7 +280,9 @@ body {
 .hero-content h1,
 .hero-content h2,
 .hero-content h3,
-.hero-content p {
+.hero-content p,
+.rsvp-block p,
+.location-section .section-title  {
     text-shadow:
         2px 2px 4px rgba(0, 0, 0, 0.7),
         -2px -2px 4px rgba(0, 0, 0, 0.7),
@@ -385,14 +383,12 @@ body {
     overflow: hidden;
     color: #333333;
 
-    /* ДОБАВЛЕНИЕ ГРАДИЕНТА ДЛЯ ПЛАВНОГО ПЕРЕХОДА ВНИЗ */
     background-image:
         linear-gradient(to bottom,
-                        rgba(247, 247, 247, 0) 0%, /* Прозрачный вверху (чтобы не закрывать фон) */
-                        #f7f7f7 100% /* Полностью #f7f7f7 внизу, соответствует background-color */
+                        rgba(247, 247, 247, 0) 0%,
+                        #f7f7f7 100%
         ),
-        url("dekorration1.jpg"); /* Ваше фоновое изображение */
-
+        url("dekorration1.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -407,9 +403,10 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(180, 176, 176, 0.1); /* Можно сделать его чуть менее плотным, например, 0.05, если нужно больше видеть фон */
+    background-color: rgba(180, 176, 176, 0.1);
     z-index: 0;
 }
+
 
 /* Убедитесь, что содержимое .our-story-section находится над overlay */
 .our-story-section .container {
@@ -434,7 +431,7 @@ body {
 }
 
 /* Класс, который добавляется JavaScript'ом, когда элемент виден */
-.invitation-block-wrapper.is-visible {
+.invitation-block-wrapper.animate-on-scroll { /* Использовать animate-on-scroll */
     opacity: 1;
     transform: translateY(0);
 }
@@ -481,7 +478,7 @@ body {
 }
 
 /* Класс, который добавляется JavaScript'ом к родительскому элементу */
-.invitation-block-wrapper.is-visible .animated-image {
+.invitation-block-wrapper.animate-on-scroll .animated-image { /* Использовать animate-on-scroll */
     opacity: 1;
     transform: translateY(0);
 }
@@ -525,6 +522,10 @@ body {
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
+.story-text.animate-on-scroll { /* Использовать animate-on-scroll */
+    opacity: 1;
+    transform: translateY(0);
+}
 /* Класс, который добавляется JavaScript'ом */
 .story-text.is-visible {
     opacity: 1;
@@ -557,7 +558,7 @@ body {
 }
 
 /* Класс, который добавляется JavaScript'ом к родительскому элементу (story-text) */
-.story-text.is-visible .highlight-text-block {
+.story-text.animate-on-scroll .highlight-text-block { /* Использовать animate-on-scroll */
     opacity: 1;
     transform: scale(1);
 }
@@ -580,7 +581,9 @@ body {
 }
 
 /* Класс, который добавляется JavaScript'ом к родительскому элементу (story-text) */
-.story-text.is-visible h3 {
+/* Этот селектор (story-text.is-visible h3) может быть проблемой, если h3 не предназначен для анимации. */
+/* Возможно, этот блок не нужен, или нужно уточнить, какой h3 анимируется */
+.story-text.animate-on-scroll h3 { /* Использовать animate-on-scroll */
     opacity: 1;
     transform: translateY(0);
 }
@@ -598,7 +601,7 @@ body {
 }
 
 /* Класс, который добавляется JavaScript'ом к родительскому элементу (story-text) */
-.story-text.is-visible h4 {
+.story-text.animate-on-scroll h4 { /* Использовать animate-on-scroll */
     opacity: 1;
     transform: translateY(0);
 }
@@ -619,16 +622,28 @@ body {
 }
 
 /* Стили для подвала страницы (футера) */
-footer {
+.main-footer { /* Используйте .main-footer для согласованности с HTML */
     background-color: #2e2e2e;
     color: #fffefe;
     text-align: center;
     padding: 20px 0;
     margin-top: 40px;
     font-size: 0.9em;
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-    border-bottom: none !important;
+    /* Убираем эти стили, так как они могут конфликтовать с flex-direction: column на body */
+    /* margin-bottom: 0 !important; */
+    /* padding-bottom: 0 !important; */
+    /* border-bottom: none !important; */
+}
+.section-title.custom-h3 { /* Пример, если это отдельный заголовок */
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em; /* Уменьшил размер для адекватности */
+    color: #000000;
+    margin-top: 30px;
+    text-transform: uppercase;
+    line-height: 1.2; /* Уменьшил line-height */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out 0.6s, transform 0.8s ease-out 0.6s;
 }
 /* Стили для полосы-разделителя */
 .section-separator {
@@ -641,17 +656,7 @@ footer {
 }
 
 /* Заголовок "Проведемо чудовий час разом на весіллі !" (h3) */
-.section-title h3{
-    font-family: 'Oswald', sans-serif;
-    font-size: 8em;
-    color: #000000;
-    margin-top: 30px;
-    text-transform: uppercase;
-    line-height: 7;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out 0.6s, transform 0.8s ease-out 0.6s;
-}
+
 
 
 /* Styles for the new Calendar Section */
@@ -664,14 +669,12 @@ footer {
     overflow: hidden;
     color: #333333;
 
-    /* ДОБАВЛЕНИЕ ГРАДИЕНТА ДЛЯ ПЛАВНОГО ПЕРЕХОДА СВЕРХУ */
     background-image:
         linear-gradient(to top,
-                        rgba(247, 247, 247, 0) 0%, /* Прозрачный внизу (чтобы не закрывать фон) */
-                        #f7f7f7 100% /* Полностью #f7f7f7 вверху, соответствует background-color */
+                        rgba(247, 247, 247, 0) 0%,
+                        #f7f7f7 100%
         ),
-        url("dekorration1.jpg"); /* Ваше новое фоновое изображение */
-
+        url("dekorration1.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -716,10 +719,10 @@ footer {
 }
 
 /* Анимация появления для календарной обертки */
-.calendar-wrapper.is-visible {
+.calendar-wrapper.animate-on-scroll { /* Использовать animate-on-scroll */
     opacity: 1;
     transform: translateY(0);
-}
+}   
 
 .calendar-header {
     display: flex;
@@ -840,12 +843,10 @@ footer {
 }
 
 .location-section .section-title {
-    font-family: 'Oswald', sans-serif;
-    color: #000000;
-    margin-bottom: 40px;
-    font-size: 2.5em; /* Можно настроить размер */
-    text-transform: uppercase;
-    letter-spacing: 3px;
+   font-family: 'Oswald', sans-serif; /* Используем Pacifico для названия */
+    font-size: 2.2em;
+    color: #de9c00; /* Цвет акцента */
+    margin-bottom: 10px;
 }
 
 .location-details-wrapper {
@@ -862,8 +863,7 @@ footer {
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* Анимация появления для обертки деталей локации */
-.location-details-wrapper.is-visible {
+.location-details-wrapper.animate-on-scroll { /* Использовать animate-on-scroll */
     opacity: 1;
     transform: translateY(0);
 }
@@ -971,7 +971,7 @@ footer {
         padding: 30px 0;
     }
     .location-section .section-title {
-        font-size: 1.8em;
+        font-size: 108%;
         margin-bottom: 25px;
         letter-spacing: 2px;
     }
@@ -999,8 +999,9 @@ footer {
 
 @media (max-width: 340px) {
     .location-section .section-title {
-        font-size: 1.6em;
-        margin-bottom: 20px;
+        font-size: 94%;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
     }
     .location-details-wrapper {
         padding: 10px;
@@ -1032,9 +1033,27 @@ footer {
     left: auto;
     transform: none;
     opacity: 0;
-    animation: fadeInName 1s ease-out forwards;
-    animation-delay: 1s;
+    /* Изначально скрыт для анимации */
+    /* animation: fadeInName 1s ease-out forwards;  <-- Эту строку заменим */
+    /* animation-delay: 1.3s; */ /* <--- Эту строку заменим */
+
+    /* НОВАЯ АНИМАЦИЯ ДЛЯ ТАЙМЕРА */
+    animation: scaleInSlideUp 0.8s ease-out forwards;
+    animation-delay: 1.3s; /* Задержка после даты, как и раньше */
+    white-space: nowrap; /* Предотвращаем перенос строк */
+}
+
+@keyframes scaleInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8); /* Начинаем чуть ниже и уменьшенным */
     }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1); /* Заканчиваем в нормальном положении и размере */
+    }
+}
+
 
 #countdown-timer {
     font-family: 'Oswald', sans-serif; 
@@ -1126,16 +1145,16 @@ footer {
 }
 
 /* Анимация появления для блока RSVP */
-.rsvp-block.is-visible {
+.rsvp-block.animate-on-scroll { /* Использовать animate-on-scroll */
     opacity: 1;
     transform: translateY(0);
 }
 
 .rsvp-block p {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.3em;
-    color: #000000;
-    margin-bottom: 15px;
+     font-family: 'Oswald', sans-serif; /* Используем Pacifico для названия */
+    font-size: 2.2em;
+    color: #de9c00; /* Цвет акцента */
+    margin-bottom: 10px;
 }
 
 .rsvp-button {
@@ -1157,6 +1176,176 @@ footer {
     background-color: #c48700;
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+/* =========================================== */
+/* Стили для кнопки "Наверх"                   */
+/* =========================================== */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #de9c00;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Состояние, когда кнопка видна (добавляется JavaScript-ом) */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Стили при наведении на кнопку */
+.back-to-top:hover {
+    background-color: #c48700;
+}
+/* =========================================== */
+/* Стили для модального окна RSVP              */
+/* =========================================== */
+
+/* Контейнер модального окна */
+.rsvp-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    padding-top: 60px;
+    /* Для эффекта появления можно добавить: */
+    justify-content: center; /* Центрирование содержимого по горизонтали */
+    align-items: center; /* Центрирование содержимого по вертикали */
+    padding-top: 0; /* Отменить padding-top, если используем flexbox для центрирования */
+}
+
+/* Содержимое модального окна */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Старое центрирование. С flexbox можно просто margin: auto; */
+    padding: 30px; /* Увеличил паддинг для лучшего вида */
+    border: 1px solid #888;
+    width: 90%; /* Ширина на мобильных */
+    max-width: 500px; /* Максимальная ширина на десктопе */
+    border-radius: 12px; /* Более мягкие углы */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* Более выраженная тень */
+    position: relative;
+    text-align: center;
+}
+
+/* Кнопка закрытия */
+.close-button {
+    color: #aaa;
+    float: right; /* Позиционирование справа */
+    font-size: 32px; /* Больше размер */
+    font-weight: bold;
+    position: absolute; /* Абсолютное позиционирование относительно .modal-content */
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Форма в модальном окне */
+.rsvp-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Промежуток между элементами формы */
+    text-align: left; /* Выравнивание текста по левому краю внутри формы */
+}
+
+.rsvp-modal label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.rsvp-modal input[type="text"],
+.rsvp-modal input[type="number"],
+.rsvp-modal textarea {
+    width: calc(100% - 20px); /* Полная ширина минус паддинг */
+    padding: 12px 10px;
+    margin-bottom: 10px; /* Отступ снизу */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    box-sizing: border-box; /* Важно для корректного расчета ширины */
+}
+
+.rsvp-modal textarea {
+    resize: vertical; /* Разрешить изменение размера только по вертикали */
+    min-height: 80px;
+}
+
+.submit-rsvp-button {
+    display: inline-block;
+    background-color: #de9c00;
+    color: #ffffff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 15px; /* Отступ сверху */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.submit-rsvp-button:hover {
+    background-color: #c48700;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Адаптивный дизайн для модального окна */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 10% auto; /* Немного ниже на маленьких экранах */
+    }
+    .close-button {
+        font-size: 28px;
+        top: 8px;
+        right: 15px;
+    }
+    .rsvp-modal form {
+        gap: 10px;
+    }
+    .rsvp-modal input[type="text"],
+    .rsvp-modal input[type="number"],
+    .rsvp-modal textarea {
+        padding: 10px;
+    }
+    .submit-rsvp-button {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
 }
 
 /* =========================================== */
@@ -1180,7 +1369,7 @@ footer {
         padding-bottom: 8px;
     }
     .rsvp-block p {
-        font-size: 1.1em;
+        font-size: 139%;
     }
     .rsvp-button {
         padding: 10px 25px;
@@ -1212,7 +1401,7 @@ footer {
         padding-bottom: 6px;
     }
     .rsvp-block p {
-        font-size: 1em;
+        font-size: 139%;
     }
     .rsvp-button {
         padding: 8px 20px;

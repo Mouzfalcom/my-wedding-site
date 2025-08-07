@@ -35,7 +35,6 @@
             <div class="container">
                 <div class="invitation-block-wrapper">
                     <h2 class="section-title">Запрошення на Весілля</h2>
-
                     <div class="invitation-image-wrapper">
                         <img src="photo_5204105761557443087_y.jpg" alt="Красивое изображение для приглашения" class="animated-image">
                     </div>
@@ -59,7 +58,7 @@
         <section class="calendar-section">
             <div class="container">
                  <div class="section-title"></div>
-            <h3>Проведемо чудовий час разом на весіллі </h3>
+            <h3></h3>
         </div>
                 <div class="calendar-wrapper">
                     <div class="calendar-header">
@@ -120,16 +119,41 @@
 </section>
                 <div class="rsvp-block">
                     <p>Підтвердити присутність</p>
-                    <a href="ВАША_ССЫЛКА_НА_GOOGLE_ФОРМУ_ЗДЕСЬ" class="rsvp-button" target="_blank">Натисни сюди</a>
+                    <a href="#" class="rsvp-button" id="openRsvpModal">Натисни сюди</a> 
                 </div>
             </div>
         </section>
-        <footer>
+        
+        <footer class="main-footer"> 
             <div class="container">
-                <p>&copy; 2025 Ярослав & Каріна. Усі права захищені.</p>
+                <p>© 2025 Ярослав & Каріна. Усі права захищені.</p>
             </div>
         </footer>
-    </div> <script src="script.js"></script>
+
+    </div> <button id="backToTop" class="back-to-top" title="Наверх">↑</button>
+
+    <div id="rsvpModal" class="rsvp-modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Підтвердження присутності</h2>
+            <p>Будь ласка, заповніть форму нижче:</p>
+            
+            <form action="https://docs.google.com/forms/d/e/1FAIpQLSfp4-yKfPQNEC_YYJ3cmGz486tLdWj6PIWxzqM6bKPfb5Y-Wg/formResponse" method="POST">
+                <label for="name">Ваше ім'я:</label><br>
+                <input type="text" id="name" name="entry.123456789" required><br><br> 
+
+                <label for="guests">Кількість осіб:</label><br>
+                <input type="number" id="guests" name="entry.987654321" min="1" value="1" required><br><br>
+
+                <label for="message">Повідомлення (необов'язково):</label><br>
+                <textarea id="message" name="entry.456789012" rows="4"></textarea><br><br>
+
+                <button type="submit" class="submit-rsvp-button">Надіслати</button>
+            </form>
+            </div>
+    </div>
+    
+    <script src="script.js"></script>
 
 </body>
 </html>
