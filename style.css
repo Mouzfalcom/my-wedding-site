@@ -113,20 +113,18 @@ body {
     50% { transform: translateX(-50%) translateY(10px); }
 }
 /* --- КОНЕЦ НОВОГО ДОБАВЛЕНИЯ --- */
+#mainContent {
+    opacity: 0;
+    visibility: hidden; /* Дополнительно скрываем от кликов и взаимодействия */
+    filter: blur(20px); /* Изначальное размытие */
+    transition: opacity 1s ease-out, visibility 1s ease-out, filter 1s ease-out; /* Плавный переход для всех свойств */
+}
 
-.main-content {
-    /* Эти свойства будет динамически устанавливать JavaScript */
-    /* НЕ УСТАНАВЛИВАЙТЕ ИХ ЗДЕСЬ В CSS: display, opacity, visibility, filter */
-    
-    /* Убедитесь, что у main-content есть фон, чтобы он не был прозрачным на фоне body */
-    background-color: #FFFFFF; /* Важный фон для всего содержимого */
-    color: #333; /* Основной цвет текста для всего контента */
-    min-height: 100vh;
-    flex-grow: 1;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    /* transition: opacity 1.5s ease-out, visibility 1.5s ease-out, transform 1.5s ease-out, filter 1.5s ease-out; */ /* Управляется JS */
-    /* transform: translateY(20px); */ /* Управляется JS */
+/* Когда mainContent должен быть виден */
+#mainContent.show-content { /* Этот класс будет добавляться JavaScript'ом */
+    opacity: 1;
+    visibility: visible;
+    filter: blur(0);
 }
 
 
@@ -1044,14 +1042,15 @@ body {
 }
 
 @keyframes scaleInSlideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.8); /* Начинаем чуть ниже и уменьшенным */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1); /* Заканчиваем в нормальном положении и размере */
-    }
+
+0% {
+opacity: 0;
+transform: translateY(20px) scale(0.8); /* Начинаем чуть ниже и уменьшенным */
+}
+100% {
+opacity: 1;
+transform: translateY(0) scale(1); /* Заканчиваем в нормальном положении и размере */
+}
 }
 
 
@@ -1177,40 +1176,10 @@ body {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
-/* =========================================== */
-/* Стили для кнопки "Наверх"                   */
-/* =========================================== */
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #de9c00;
-    color: #ffffff;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.5em;
-    line-height: 50px;
-    text-align: center;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
 
-/* Состояние, когда кнопка видна (добавляется JavaScript-ом) */
-.back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-}
 
-/* Стили при наведении на кнопку */
-.back-to-top:hover {
-    background-color: #c48700;
-}
+
+
 /* =========================================== */
 /* Стили для модального окна RSVP              */
 /* =========================================== */
