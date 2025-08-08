@@ -11,19 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 introOverlay.style.display = 'none';
                 introOverlay.style.visibility = 'hidden';
-                document.body.style.overflow = '';
+                document.body.style.overflow = ''; // Восстанавливаем скролл
             }, 1000); // Соответствует transition в CSS для opacity introOverlay
         });
     } else if (mainContent) {
+        // Если оверлея нет, сразу показываем основной контент
         mainContent.classList.add('show-content');
         document.body.style.overflow = '';
     }
 
     // === Анимации при прокрутке (Intersection Observer) ===
-    // *** ИСПРАВЛЕННЫЙ СПИСОК sectionsToAnimate ***
-    const sectionsToAnimate = document.querySelectorAll(
+    // Добавляем все классы, которые должны быть анимированы JavaScript'ом.
+    // Элементы, которые видны сразу, должны иметь 'animate-on-scroll' в HTML.
+   const sectionsToAnimate = document.querySelectorAll(
         '.invitation-block-wrapper, .story-content, .highlight-text-block, .calendar-wrapper, ' +
-        '.location-details-wrapper, #countdown-timer, .rsvp-block, .gallery-item, .section-title' // <--- ЭТОТ СЕЛЕКТОР ДОБАВЛЕН
+        '.location-details-wrapper, #countdown-timer, .rsvp-block, .gallery-item, ' +
+        '.section-title, .story-text' // <-- MAKE SURE ALL THESE ARE HERE!
     );
 
     const observerOptions = {
@@ -42,7 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     sectionsToAnimate.forEach(section => {
-        observer.observe(section);
+        // Мы НЕ наблюдаем за элементами, у которых уже есть animate-on-scroll (для тех, что видны сразу)
+        if (!section.classList.contains('animate-on-scroll')) {
+            observer.observe(section);
+        }
     });
 
     // === Выделение дня в календаре ===
@@ -51,15 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const weddingDay = 12; // День свадьбы
         const totalDaysInMonth = 31; // Всего дней в декабре 2025
 
+        // Определяем день недели для 1 декабря 2025 (Понедельник = 1, Воскресенье = 0)
+        // new Date('2025-12-01').getDay() вернет 1 для понедельника
         const firstDayOfWeek = new Date('2025-12-01').getDay();
+        // Рассчитываем количество пустых ячеек в начале месяца
+        // Если 1-й день - воскресенье (0), нужно 6 пустых дней. Иначе (firstDayOfWeek - 1).
         const emptyDays = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
 
+        // Создаем пустые ячейки для дней до 1-го числа
         for (let i = 0; i < emptyDays; i++) {
             const emptyDayDiv = document.createElement('div');
-            emptyDayDiv.classList.add('day');
+            emptyDayDiv.classList.add('day', 'empty'); // Добавляем класс 'empty'
             calendarGrid.appendChild(emptyDayDiv);
         }
 
+        // Заполняем дни месяца
         for (let i = 1; i <= totalDaysInMonth; i++) {
             const dayDiv = document.createElement('div');
             dayDiv.classList.add('day');
@@ -123,28 +135,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // === Логика модального окна RSVP ===
-    const openRsvpModalBtn = document.getElementById('openRsvpModal');
-    const rsvpModal = document.getElementById('rsvpModal');
+    const openRsvpModalBtn = document.getElementById('openRsvpModal'); // Если такой кнопки нет, этот код не сработает
+    const rsvpModal = document.getElementById('rsvpModal'); // Убедитесь, что у вас есть модальное окно с этим ID
 
-    if (rsvpModal) {
-        const closeButton = rsvpModal.querySelector('.close-button');
-        const rsvpForm = rsvpModal.querySelector('form');
+    if (rsvpModal) { // Проверяем, существует ли модальное окно
+        const closeButton = rsvpModal.querySelector('.close-button'); // Кнопка закрытия внутри модалки
+        const rsvpForm = rsvpModal.querySelector('form'); // Форма внутри модалки
 
         if (openRsvpModalBtn) {
             openRsvpModalBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                rsvpModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                e.preventDefault(); // Предотвращаем дефолтное поведение ссылки
+                rsvpModal.style.display = 'block'; // Показываем модалку
+                document.body.style.overflow = 'hidden'; // Запрещаем скролл фона
             });
         }
 
         if (closeButton) {
             closeButton.addEventListener('click', () => {
-                rsvpModal.style.display = 'none';
-                document.body.style.overflow = '';
+                rsvpModal.style.display = 'none'; // Скрываем модалку
+                document.body.style.overflow = ''; // Разрешаем скролл фона
             });
         }
 
+        // Закрытие модалки по клику вне ее
         window.addEventListener('click', (e) => {
             if (e.target === rsvpModal) {
                 rsvpModal.style.display = 'none';
@@ -152,21 +165,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Отправка формы RSVP (если форма существует)
         if (rsvpForm) {
             rsvpForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
+                e.preventDefault(); // Предотвращаем стандартную отправку формы
 
                 const form = e.target;
                 const formData = new FormData(form);
-                const formAction = form.action;
+                const formAction = form.action; // URL из атрибута action вашей формы Google Forms
 
                 try {
+                    // Отправка данных на Google Forms (используем no-cors для обхода ограничений)
                     const response = await fetch(formAction, {
                         method: 'POST',
                         body: formData,
-                        mode: 'no-cors'
+                        mode: 'no-cors' // Важно для отправки на Google Forms
                     });
 
+                    // После успешной (или кажущейся успешной из-за no-cors) отправки
                     const modalContent = rsvpModal.querySelector('.modal-content');
                     modalContent.innerHTML = `
                         <span class="close-button">×</span>
@@ -175,11 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="submit-rsvp-button" id="closeAfterSubmit">Закрити</button>
                     `;
 
+                    // Добавляем обработчики для новых кнопок закрытия
                     modalContent.querySelector('#closeAfterSubmit').addEventListener('click', () => {
                         rsvpModal.style.display = 'none';
                         document.body.style.overflow = '';
                     });
-
                     modalContent.querySelector('.close-button').addEventListener('click', () => {
                         rsvpModal.style.display = 'none';
                         document.body.style.overflow = '';
@@ -187,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 } catch (error) {
                     console.error('Ошибка при отправке формы:', error);
+                    // Обработка ошибки
                     const modalContent = rsvpModal.querySelector('.modal-content');
                     modalContent.innerHTML = `
                         <span class="close-button">×</span>
