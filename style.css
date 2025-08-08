@@ -544,6 +544,7 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
 /* Класс, который добавляется JavaScript'ом */
 .story-text.is-visible {
     opacity: 1;
@@ -672,9 +673,105 @@ body {
     border-radius: 0;
     box-shadow: none;
 }
+/* =========================================== */
+/* НОВЫЕ СТИЛИ ДЛЯ ФОТОГАЛЕРЕИ */
+/* =========================================== */
+.photo-gallery-section {
+    background-color: #f9f9f9;
+}
 
-/* Заголовок "Проведемо чудовий час разом на весіллі !" (h3) */
+.gallery-grid {
+    display: grid;
+    /* Теперь 2 колонки, каждая занимает равное пространство */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px; /* Отступы между элементами галереи */
+    max-width: 900px; /* Уменьшаем максимальную ширину для 2х2 сетки */
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex; /* Для центрирования изображения */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Показываем, что элемент интерактивный */
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px) scale(1.02); /* Эффект поднятия и небольшого увеличения */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Обрезает изображение, чтобы оно поместилось */
+    display: block;
+    border-radius: 10px;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease-in-out, transform 0.5s ease; /* Добавляем плавность трансформации */
+}
+
+.gallery-item:hover img {
+    filter: brightness(1);
+    transform: scale(1.1); /* Зум при наведении */
+}
+
+/* Эффект оверлея при наведении */
+.gallery-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Темный полупрозрачный фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Изначально скрыт */
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1; /* Появляется при наведении */
+}
+
+.gallery-item .overlay p {
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transform: translateY(20px); /* Изначально текст ниже */
+    transition: transform 0.3s ease-in-out;
+    opacity: 0; /* Изначально текст скрыт */
+}
+
+.gallery-item:hover .overlay p {
+    transform: translateY(0); /* Текст поднимается */
+    opacity: 1; /* Текст появляется */
+}
+
+/* Красивая фоторамка (используем border-image или градиент для более сложной рамки) */
+/* Для этой демонстрации, давайте сделаем её более элегантной через простые границы */
+.gallery-item {
+    border: 5px solid transparent; /* Изначально прозрачный бордер */
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    /* Градиентный border как "золотистая" рамка */
+    border-image: linear-gradient(to bottom right, #de9c00, #b8860b, #de9c00) 1;
+}
+
+.gallery-item:hover {
+    border-image: linear-gradient(to bottom right, #ffc107, #ffd700, #ffc107) 1; /* Более яркая рамка при наведении */
+}
 
 
 /* Styles for the new Calendar Section */
@@ -1403,7 +1500,6 @@ transform: translateY(0) scale(1); /* Заканчиваем в нормальн
 }
 
 
-/* =========================================== */
 /* Адаптивный дизайн: Медиа-запросы */
 /* =========================================== */
 
@@ -1640,3 +1736,130 @@ transform: translateY(0) scale(1); /* Заканчиваем в нормальн
          font-size: 130%;
      }
 }
+/* ... Ваш существующий CSS-код для Hero Section, Story, Gallery, Calendar и т.д. ... */
+
+/* =========================================== */
+/* Стили для анимаций при прокрутке */
+/* =========================================== */
+
+/* Общие стили для анимируемых элементов: изначально скрыты */
+.invitation-block-wrapper,
+.story-content,
+.highlight-text-block,
+.calendar-wrapper,
+.location-details-wrapper,
+.rsvp-block,
+.gallery-item,
+#countdown-timer {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+/* Класс, который добавляется JavaScript'ом для запуска анимации */
+.animate-on-scroll {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Дополнительные анимации (примеры, можете настроить по вкусу) */
+
+/* Анимация для заголовков секций (section-title) */
+.section-title {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    will-change: opacity, transform;
+}
+
+.section-title.animate-on-scroll {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Анимация для элементов галереи с задержкой */
+.gallery-item.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.gallery-item.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.gallery-item.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.gallery-item.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+
+/* Анимация для текста приглашения */
+/* Анимация для текста приглашения */
+.story-text p, .story-text h4 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.story-content.animate-on-scroll p:nth-child(1) { transition-delay: 0.1s; }
+.story-content.animate-on-scroll p:nth-child(2) { transition-delay: 0.3s; }
+.story-content.animate-on-scroll p:nth-child(3) { transition-delay: 0.5s; }
+.story-content.animate-on-scroll .highlight-text-block { transition-delay: 0.7s; }
+.story-content.animate-on-scroll h4 { transition-delay: 0.9s; }
+
+.story-content.animate-on-scroll p,
+.story-content.animate-on-scroll h4 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Анимация для таймера обратного отсчета */
+#countdown-timer {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+#countdown-timer.animate-on-scroll {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Пример: Slide-in-left для Location */
+.location-details-wrapper {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    will-change: opacity, transform;
+}
+.location-details-wrapper.animate-on-scroll {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Пример: Fade-in-up для RSVP */
+.rsvp-block {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    will-change: opacity, transform;
+}
+.rsvp-block.animate-on-scroll {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Пример: Scale-in для Calendar */
+.calendar-wrapper {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    will-change: opacity, transform;
+}
+.calendar-wrapper.animate-on-scroll {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* =========================================== */
+/* Адаптивный дизайн (Media Queries) */
+/* Если у вас есть этот раздел, он должен идти ПОСЛЕ стилей анимаций */
+/* =========================================== */
+@media (max-width: 768px) {
+    /* ... Ваши стили для мобильных устройств ... */
+}
+
+/* ... и так далее для других медиа-запросов ... */
+/* =========================================== */
